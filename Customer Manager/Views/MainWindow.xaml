@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Customer_Manager.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Customer_Manager"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Customer Manager">
+
+    <Window.SystemBackdrop>
+        <MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <StackPanel Padding="20" Spacing="10">
+        <TextBox x:Name="NameTextBox" Header="Customer Name" />
+        <TextBox x:Name="EmailTextBox" Header="Email Address" KeyDown="EmailTextBox_KeyDown" />
+
+        <Button x:Name="AddButton" Content="Add Customer" Click="AddCustomer_Click" />
+    </StackPanel>
+</Window>

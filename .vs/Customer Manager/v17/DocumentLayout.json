@@ -1,0 +1,185 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\Repos\\Customer Manager\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\helpers\\pathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\helpers\\pathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\loginwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\loginwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\models\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\data\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\data\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:47:02.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PathHelper.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Helpers\\PathHelper.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Helpers\\PathHelper.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Helpers\\PathHelper.cs",
+              "RelativeToolTip": "Customer Manager\\Helpers\\PathHelper.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAzwB8AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:21:30.113Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml",
+              "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-21T09:50:14.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LoginWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\LoginWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\LoginWindow.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\LoginWindow.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\Views\\LoginWindow.xaml.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAC8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:08:14.241Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\App.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\App.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\App.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\App.xaml.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAswDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:47:47.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Data\\UserRepository.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\UserRepository.cs",
+              "RelativeToolTip": "Customer Manager\\Data\\UserRepository.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAUwC8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:57:14.645Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "LoginWindow.xaml",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\LoginWindow.xaml",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\LoginWindow.xaml",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\LoginWindow.xaml",
+              "RelativeToolTip": "Customer Manager\\Views\\LoginWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-21T10:07:25.741Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Data\\CustomerRepository.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
+              "RelativeToolTip": "Customer Manager\\Data\\CustomerRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:44:05.077Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "User.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\User.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Models\\User.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\User.cs",
+              "RelativeToolTip": "Customer Manager\\Models\\User.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T08:43:54.669Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Customer.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\Customer.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Models\\Customer.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\Customer.cs",
+              "RelativeToolTip": "Customer Manager\\Models\\Customer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T07:59:06.141Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
