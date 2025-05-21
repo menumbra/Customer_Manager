@@ -6,6 +6,7 @@
     xmlns:local="using:Customer_Manager"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
     mc:Ignorable="d"
     Title="Customer Manager">
 
@@ -18,5 +19,20 @@
         <TextBox x:Name="EmailTextBox" Header="Email Address" KeyDown="EmailTextBox_KeyDown" />
 
         <Button x:Name="AddButton" Content="Add Customer" Click="AddCustomer_Click" />
+
+        <toolkit:DataGrid x:Name="CustomerDataGrid"
+                  Margin="0,20,0,0"
+                  Height="300"
+                  HeadersVisibility="Column"
+                  GridLinesVisibility="Horizontal"
+                  IsReadOnly="True">
+            <toolkit:DataGrid.Columns>
+                <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                <toolkit:DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
+                <toolkit:DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="Auto" />
+                <toolkit:DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="Auto" />
+                <toolkit:DataGridTextColumn Header="Editor" Binding="{Binding Editor}" Width="Auto" />
+            </toolkit:DataGrid.Columns>
+        </toolkit:DataGrid>
     </StackPanel>
 </Window>

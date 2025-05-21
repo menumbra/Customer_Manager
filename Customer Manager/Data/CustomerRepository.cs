@@ -48,4 +48,32 @@ public class CustomerRepository
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
         return connection.Query<Customer>("SELECT * FROM Customers").ToList();
     }
+
+    public List<Customer> GetAllCustomers()
+    {
+        using var connection = new SqliteConnection(_dbPath);
+        connection.Open();
+
+        var customers = new List<Customer>();
+
+        var command = connection.CreateCommand();
+        command.CommandText = "SELECT * FROM Customers";
+
+        using var reader = command.ExecuteReader();
+        while (reader.Read())
+        {
+            customers.Add(new Customer
+            {
+                Id = reader["Id"]!.ToString(),
+                Name = reader["Name"]!.ToString(),
+                Email = reader["Email"]!.ToString(),
+                Month = reader["Month"]!.ToString(),
+                Date = reader["Date"]!.ToString(),
+                Editor = reader["Editor"]!.ToString()
+            });
+        }
+
+        return customers;
+    }
+
 }

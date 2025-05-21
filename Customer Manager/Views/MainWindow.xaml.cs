@@ -32,6 +32,7 @@ public sealed partial class MainWindow : Window
     {
         this.InitializeComponent();
         _editor = editor;
+        LoadCustomers();
     }
 
     private async void AddCustomer_Click(object sender, RoutedEventArgs e)
@@ -99,5 +100,14 @@ public sealed partial class MainWindow : Window
         {
             AddCustomer_Click(AddButton, new RoutedEventArgs());
         }
+    }
+
+    private void LoadCustomers()
+    {
+        string dbPath = PathHelper.GetUserDbPath(_editor);
+        var repo = new CustomerRepository(dbPath);
+        var customers = repo.GetAllCustomers(); // You must have this method
+
+        CustomerDataGrid.ItemsSource = customers;
     }
 }
