@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Customer_Manager.Data;
 using Customer_Manager.Helpers;
 using Customer_Manager.Models;
@@ -13,6 +8,12 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -27,78 +28,74 @@ namespace Customer_Manager.Views;
 public sealed partial class MainWindow : Window
 {
     private readonly string _editor;
+    private ObservableCollection<Customer> _customers = new();
 
     public MainWindow(string editor)
     {
         this.InitializeComponent();
         _editor = editor;
+
         LoadCustomers();
     }
 
     private async void AddCustomer_Click(object sender, RoutedEventArgs e)
     {
-        AddButton.IsEnabled = false; // Prevent double submission
+        string name = NameTextBox.Text.Trim();
+        string email = EmailTextBox.Text.Trim();
 
-        try
+        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
         {
-            string name = NameTextBox.Text.Trim();
-            string email = EmailTextBox.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+            var dialog = new ContentDialog
             {
-                var dialog = new ContentDialog
-                {
-                    Title = "Error",
-                    Content = "Name and Email are required.",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.Content.XamlRoot
-                };
-                await dialog.ShowAsync();
-                return;
-            }
-
-            var customer = new Customer
-            {
-                Id = Guid.NewGuid().ToString(),
-                Month = PathHelper.GetMonth(),
-                Date = PathHelper.GetDay(),
-                Editor = _editor,
-                Name = name,
-                Email = email
-            };
-
-            // Save to user's database
-            string dbPath = PathHelper.GetUserDbPath(_editor);
-            var repo = new CustomerRepository(dbPath);
-            repo.AddCustomer(customer);
-
-            // Create folder in NAS for customer
-            PathHelper.GetCustomerFolder(_editor, customer.Name);
-
-            // Clear input fields
-            NameTextBox.Text = "";
-            EmailTextBox.Text = "";
-
-            var successDialog = new ContentDialog
-            {
-                Title = "Success",
-                Content = "Customer added successfully.",
+                Title = "Error",
+                Content = "Name and Email are required.",
                 CloseButtonText = "OK",
                 XamlRoot = this.Content.XamlRoot
             };
-            await successDialog.ShowAsync();
+            await dialog.ShowAsync();
+            return;
         }
-        finally
+
+        var customer = new Customer
         {
-            AddButton.IsEnabled = true; // Re-enable after operation
-        }
+            Id = Guid.NewGuid().ToString(),
+            Month = PathHelper.GetMonth(),
+            Date = PathHelper.GetDay(),
+            Editor = _editor,
+            Name = name,
+            Email = email
+        };
+
+        // Save to user's database
+        string dbPath = PathHelper.GetUserDbPath(_editor);
+        var repo = new CustomerRepository(dbPath);
+        repo.AddCustomer(customer);
+
+        // Create folder in NAS for customer
+        PathHelper.GetCustomerFolder(_editor, customer.Name);
+
+        // Update the UI list
+        _customers.Add(customer);
+
+        // Clear input
+        NameTextBox.Text = "";
+        EmailTextBox.Text = "";
+
+        var successDialog = new ContentDialog
+        {
+            Title = "Success",
+            Content = "Customer added successfully.",
+            CloseButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+        await successDialog.ShowAsync();
     }
 
     private void EmailTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
     {
         if (e.Key == Windows.System.VirtualKey.Enter)
         {
-            AddCustomer_Click(AddButton, new RoutedEventArgs());
+            AddCustomer_Click(sender, new RoutedEventArgs());
         }
     }
 
@@ -106,8 +103,14 @@ public sealed partial class MainWindow : Window
     {
         string dbPath = PathHelper.GetUserDbPath(_editor);
         var repo = new CustomerRepository(dbPath);
-        var customers = repo.GetAllCustomers(); // You must have this method
+        var customerList = repo.GetCustomers();
 
-        CustomerDataGrid.ItemsSource = customers;
+        _customers = new ObservableCollection<Customer>(customerList);
+        CustomerDataGrid.ItemsSource = _customers;
     }
+    private void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        LoadCustomers();
+    }
+
 }

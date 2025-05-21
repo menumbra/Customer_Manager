@@ -19,13 +19,14 @@
         <TextBox x:Name="EmailTextBox" Header="Email Address" KeyDown="EmailTextBox_KeyDown" />
 
         <Button x:Name="AddButton" Content="Add Customer" Click="AddCustomer_Click" />
+        <Button x:Name="RefreshButton" Content="🔄 Refresh List" Click="RefreshButton_Click" />
 
-        <toolkit:DataGrid x:Name="CustomerDataGrid"
-                  Margin="0,20,0,0"
-                  Height="300"
-                  HeadersVisibility="Column"
-                  GridLinesVisibility="Horizontal"
-                  IsReadOnly="True">
+        <toolkit:DataGrid
+            x:Name="CustomerDataGrid"
+            AutoGenerateColumns="False"
+            Margin="0,20,0,0"
+            Height="300">
+
             <toolkit:DataGrid.Columns>
                 <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <toolkit:DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
