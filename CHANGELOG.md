@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- View Customer List feature using Dapper
+  - `DataGrid` UI to display all customers
+  - Method to load customers from `customer.db`
+  - Automatically loads list on startup and after adding a customer
+  - Refresh button to reload the customer list manually
+
+
+### Added
 - Initial project structure with WinUI 3 and .NET 8
 - Login system with role-based access (`admin`, `user`)
 - Customer entry form with SQLite database per user
