@@ -1,18 +1,29 @@
-# Ignore build output
+# Build results
 bin/
 obj/
+GeneratedFiles/
 
-# Ignore user-specific files
+# Visual Studio settings
+.vscode/
+.vs/
 *.user
 *.suo
-*.userosscache
-*.sln.docstates
 
-# VS Code settings (if used)
-.vscode/
-
-# SQLite databases - if you want to ignore them
+# Runtime files
 *.db
+*.db-journal
 
-# Runtime-created folders
-/TestFolders/
+# Logs
+*.log
+
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# NAS test folders (if needed)
+TestFolders/
+
+# Others
+*.cache
+*.pdb
