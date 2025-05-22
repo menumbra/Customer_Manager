@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Delete Customer feature:
+  - Shows confirmation dialog before deleting
+  - Removes selected record from the database
+  - Refreshes the customer list automatically
+
+
+### Added
 - View Customer List feature using Dapper
   - `DataGrid` UI to display all customers
   - Method to load customers from `customer.db`
