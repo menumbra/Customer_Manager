@@ -165,7 +165,7 @@ public sealed partial class MainWindow : Window
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         LoadCustomers();
-    }    
+    }
 
     private async void DeleteCustomer_Click(object sender, RoutedEventArgs e)
     {
@@ -177,7 +177,7 @@ public sealed partial class MainWindow : Window
                 Content = $"Are you sure you want to delete {selectedCustomer.Name}?",
                 PrimaryButtonText = "Yes",
                 CloseButtonText = "No",
-                XamlRoot = NameTextBox.XamlRoot // Required in WinUI 3
+                XamlRoot = NameTextBox.XamlRoot
             };
 
             var result = await dialog.ShowAsync();
@@ -186,6 +186,28 @@ public sealed partial class MainWindow : Window
             {
                 var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
                 repo.DeleteCustomer(selectedCustomer.Id);
+
+                // Delete customer folder
+                string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, selectedCustomer.Name);
+                if (Directory.Exists(folderPath))
+                {
+                    try
+                    {
+                        Directory.Delete(folderPath, true); // true = recursive delete
+                    }
+                    catch (Exception ex)
+                    {
+                        var errorDialog = new ContentDialog
+                        {
+                            Title = "Folder Delete Error",
+                            Content = $"Could not delete folder: {ex.Message}",
+                            CloseButtonText = "OK",
+                            XamlRoot = NameTextBox.XamlRoot
+                        };
+                        await errorDialog.ShowAsync();
+                    }
+                }
+
                 LoadCustomers(); // Refresh the table
             }
         }
@@ -202,6 +224,7 @@ public sealed partial class MainWindow : Window
             await noSelectionDialog.ShowAsync();
         }
     }
+
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {

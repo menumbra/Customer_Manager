@@ -26,8 +26,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAgwL4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T17:54:44.18Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
@@ -39,19 +52,6 @@
               "ViewState": "AgIAABEAAAAAAAAAAAAUwCQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-22T11:14:04.605Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml.cs",
-              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAD0AAAAAAAAAAAAiwEYAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T17:54:44.18Z",
               "EditorCaption": ""
             },
             {
