@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- SME and SV toggle switches with automatic value mapping
+- Debug logging for key press detection (`Debug.WriteLine`)
+- Enter key support for submitting customer entry
+
+### Fixed
+- Customer folder now renames correctly on name update
+- Prevented runtime errors by cleaning orphaned databases
+
 ### Changed
 - Deleting a customer now also deletes their NAS folder
 - Added error handling for folder deletion issues
