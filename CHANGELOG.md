@@ -6,6 +6,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- Deleting a customer now also deletes their NAS folder
+- Added error handling for folder deletion issues
+
 ### Added
 - Edit/Update customer functionality
   - Pre-fills input fields
