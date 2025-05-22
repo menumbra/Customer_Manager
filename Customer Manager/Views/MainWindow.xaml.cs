@@ -148,4 +148,24 @@ public sealed partial class MainWindow : Window
             await noSelectionDialog.ShowAsync();
         }
     }
+
+    private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        string query = SearchTextBox.Text.Trim().ToLower();
+
+        if (string.IsNullOrWhiteSpace(query))
+        {
+            CustomerDataGrid.ItemsSource = _customers;
+            return;
+        }
+
+        var filtered = _customers
+            .Where(c =>
+                (!string.IsNullOrWhiteSpace(c.Name) && c.Name.ToLower().Contains(query)) ||
+                (!string.IsNullOrWhiteSpace(c.Email) && c.Email.ToLower().Contains(query)))
+            .ToList();
+
+        CustomerDataGrid.ItemsSource = filtered;
+    }
+
 }
