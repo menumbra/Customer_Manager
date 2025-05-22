@@ -113,4 +113,39 @@ public sealed partial class MainWindow : Window
         LoadCustomers();
     }
 
+    private async void DeleteCustomer_Click(object sender, RoutedEventArgs e)
+    {
+        if (CustomerDataGrid.SelectedItem is Customer selectedCustomer)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Confirm Delete",
+                Content = $"Are you sure you want to delete {selectedCustomer.Name}?",
+                PrimaryButtonText = "Yes",
+                CloseButtonText = "No",
+                XamlRoot = NameTextBox.XamlRoot // Required in WinUI 3
+            };
+
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
+                repo.DeleteCustomer(selectedCustomer.Id);
+                LoadCustomers(); // Refresh the table
+            }
+        }
+        else
+        {
+            var noSelectionDialog = new ContentDialog
+            {
+                Title = "No Selection",
+                Content = "Please select a customer to delete.",
+                CloseButtonText = "OK",
+                XamlRoot = NameTextBox.XamlRoot
+            };
+
+            await noSelectionDialog.ShowAsync();
+        }
+    }
 }

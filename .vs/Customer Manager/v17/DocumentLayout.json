@@ -7,8 +7,12 @@
       "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\models\\customer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\helpers\\pathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\helpers\\pathhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\data\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\data\\customerrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -26,21 +30,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CustomerRepository.cs",
-              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
-              "RelativeDocumentMoniker": "Customer Manager\\Data\\CustomerRepository.cs",
-              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
-              "RelativeToolTip": "Customer Manager\\Data\\CustomerRepository.cs",
-              "ViewState": "AgIAACwAAAAAAAAAAADwv0oAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T18:42:00.317Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -49,7 +40,7 @@
               "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml.cs",
               "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml.cs",
               "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAwwCkAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAswIgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-21T17:54:44.18Z",
               "EditorCaption": ""
@@ -57,25 +48,51 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Customer.cs",
-              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\Customer.cs",
-              "RelativeDocumentMoniker": "Customer Manager\\Models\\Customer.cs",
-              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Models\\Customer.cs",
-              "RelativeToolTip": "Customer Manager\\Models\\Customer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Title": "PathHelper.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Helpers\\PathHelper.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Helpers\\PathHelper.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Helpers\\PathHelper.cs",
+              "RelativeToolTip": "Customer Manager\\Helpers\\PathHelper.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T18:46:41.845Z",
+              "WhenOpened": "2025-05-22T06:50:52.244Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "CustomerRepository.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Data\\CustomerRepository.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\CustomerRepository.cs",
+              "RelativeToolTip": "Customer Manager\\Data\\CustomerRepository.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAEwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T06:38:52.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserRepository.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\UserRepository.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Data\\UserRepository.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Data\\UserRepository.cs",
+              "RelativeToolTip": "Customer Manager\\Data\\UserRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-22T07:05:26.748Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Customer Manager\\Views\\MainWindow.xaml",
               "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\MainWindow.xaml",
               "RelativeToolTip": "Customer Manager\\Views\\MainWindow.xaml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAABkAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-05-21T09:50:14.857Z",
               "EditorCaption": ""

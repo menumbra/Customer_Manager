@@ -76,4 +76,11 @@ public class CustomerRepository
     //    return customers;
     //}
 
+    public void DeleteCustomer(string id)
+    {
+        using var connection = new SqliteConnection($"Data Source={_dbPath}");
+        connection.Execute("DELETE FROM Customers WHERE Id = @Id", new { Id = id });
+    }
+
+
 }

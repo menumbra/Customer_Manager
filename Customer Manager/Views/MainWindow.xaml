@@ -19,6 +19,7 @@
         <TextBox x:Name="EmailTextBox" Header="Email Address" KeyDown="EmailTextBox_KeyDown" />
 
         <Button x:Name="AddButton" Content="Add Customer" Click="AddCustomer_Click" />
+        <Button x:Name="DeleteButton" Content="Delete Selected" Click="DeleteCustomer_Click" />
         <Button x:Name="RefreshButton" Content="🔄 Refresh List" Click="RefreshButton_Click" />
 
         <toolkit:DataGrid
