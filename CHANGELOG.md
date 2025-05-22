@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Edit/Update customer functionality
+  - Pre-fills input fields
+  - Updates database record
+  - Renames NAS folder if customer name changed
+
+### Added
 - Search/filter feature for customer list:
   - Real-time filtering by name or email
   - Automatically updates the DataGrid as user types
