@@ -14,4 +14,6 @@ public class Customer
     public required string Editor { get; set; }      // Username of logged-in user
     public required string Name { get; set; }        // Customer name
     public required string Email { get; set; }       // Customer email
+    public string SME { get; set; } = "";
+    public string SV { get; set; } = "";
 }

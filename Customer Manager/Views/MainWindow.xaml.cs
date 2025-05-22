@@ -29,15 +29,12 @@ public sealed partial class MainWindow : Window
 {
     private readonly string _editor;
     private ObservableCollection<Customer> _customers = new();
-
     private Customer? _customerBeingEdited = null;
-
 
     public MainWindow(string editor)
     {
         this.InitializeComponent();
         _editor = editor;
-
         LoadCustomers();
     }
 
@@ -64,16 +61,16 @@ public sealed partial class MainWindow : Window
 
         if (_customerBeingEdited is not null)
         {
-            // We're editing an existing customer
             string oldName = _customerBeingEdited.Name;
             string newName = name;
 
             _customerBeingEdited.Name = name;
             _customerBeingEdited.Email = email;
+            _customerBeingEdited.SME = SmeSwitch.IsOn ? "IG" : "";
+            _customerBeingEdited.SV = SvSwitch.IsOn ? "HC" : "";
 
             repo.UpdateCustomer(_customerBeingEdited);
 
-            // Rename folder if customer name changed
             string oldFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
             string newFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, newName);
 
@@ -87,7 +84,6 @@ public sealed partial class MainWindow : Window
         }
         else
         {
-            // We're adding a new customer
             var customer = new Customer
             {
                 Id = Guid.NewGuid().ToString(),
@@ -95,18 +91,20 @@ public sealed partial class MainWindow : Window
                 Date = PathHelper.GetDay(),
                 Editor = _editor,
                 Name = name,
-                Email = email
+                Email = email,
+                SME = SmeSwitch.IsOn ? "IG" : "",
+                SV = SvSwitch.IsOn ? "HC" : ""
             };
 
             repo.AddCustomer(customer);
             PathHelper.GetCustomerFolder(_editor, customer.Name);
         }
 
-        // Clear input fields
         NameTextBox.Text = "";
         EmailTextBox.Text = "";
+        SmeSwitch.IsOn = false;
+        SvSwitch.IsOn = false;
 
-        // Refresh customer list
         LoadCustomers();
 
         var successDialog = new ContentDialog
@@ -133,11 +131,11 @@ public sealed partial class MainWindow : Window
         {
             _customerBeingEdited = selectedCustomer;
 
-            // Fill input fields with selected customer's data
             NameTextBox.Text = selectedCustomer.Name;
             EmailTextBox.Text = selectedCustomer.Email;
+            SmeSwitch.IsOn = selectedCustomer.SME == "IG";
+            SvSwitch.IsOn = selectedCustomer.SV == "HC";
 
-            // Change the Add button to "Update"
             AddButton.Content = "Update Customer";
         }
         else
@@ -162,6 +160,7 @@ public sealed partial class MainWindow : Window
         _customers = new ObservableCollection<Customer>(customerList);
         CustomerDataGrid.ItemsSource = _customers;
     }
+
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         LoadCustomers();
@@ -187,13 +186,12 @@ public sealed partial class MainWindow : Window
                 var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
                 repo.DeleteCustomer(selectedCustomer.Id);
 
-                // Delete customer folder
                 string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, selectedCustomer.Name);
                 if (Directory.Exists(folderPath))
                 {
                     try
                     {
-                        Directory.Delete(folderPath, true); // true = recursive delete
+                        Directory.Delete(folderPath, true);
                     }
                     catch (Exception ex)
                     {
@@ -208,7 +206,7 @@ public sealed partial class MainWindow : Window
                     }
                 }
 
-                LoadCustomers(); // Refresh the table
+                LoadCustomers();
             }
         }
         else
@@ -224,7 +222,6 @@ public sealed partial class MainWindow : Window
             await noSelectionDialog.ShowAsync();
         }
     }
-
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -244,5 +241,4 @@ public sealed partial class MainWindow : Window
 
         CustomerDataGrid.ItemsSource = filtered;
     }
-
 }

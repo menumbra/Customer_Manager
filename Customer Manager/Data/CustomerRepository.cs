@@ -29,7 +29,9 @@ public class CustomerRepository
                 Date TEXT,
                 Editor TEXT,
                 Name TEXT,
-                Email TEXT
+                Email TEXT,
+                SME TEXT,
+                SV TEXT
             )
         """);
     }
@@ -38,8 +40,8 @@ public class CustomerRepository
     {
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
         connection.Execute("""
-            INSERT INTO Customers (Id, Month, Date, Editor, Name, Email)
-            VALUES (@Id, @Month, @Date, @Editor, @Name, @Email)
+            INSERT INTO Customers (Id, Month, Date, Editor, Name, Email, SME, SV)
+            VALUES (@Id, @Month, @Date, @Editor, @Name, @Email, @SME, @SV)
         """, customer);
     }
 
@@ -47,11 +49,13 @@ public class CustomerRepository
     {
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
         connection.Execute("""
-        UPDATE Customers
-        SET Name = @Name,
-            Email = @Email
-        WHERE Id = @Id
-    """, customer);
+            UPDATE Customers
+            SET Name = @Name,
+                Email = @Email,
+                SME = @SME,
+                SV = @SV
+            WHERE Id = @Id
+        """, customer);
     }
 
     public List<Customer> GetCustomers()
@@ -65,6 +69,4 @@ public class CustomerRepository
         using var connection = new SqliteConnection($"Data Source={_dbPath}");
         connection.Execute("DELETE FROM Customers WHERE Id = @Id", new { Id = id });
     }
-
-
 }
