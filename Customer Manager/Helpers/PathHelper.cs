@@ -34,4 +34,9 @@ public static class PathHelper
         Directory.CreateDirectory(path);
         return path;
     }
+
+    public static string GetCustomerFolderPathOnly(string editor, string customerName)
+    {
+        return Path.Combine(baseNas, GetMonth(), GetDay(), editor, customerName);
+    }
 }

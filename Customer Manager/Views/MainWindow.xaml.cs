@@ -30,6 +30,9 @@ public sealed partial class MainWindow : Window
     private readonly string _editor;
     private ObservableCollection<Customer> _customers = new();
 
+    private Customer? _customerBeingEdited = null;
+
+
     public MainWindow(string editor)
     {
         this.InitializeComponent();
@@ -50,43 +53,68 @@ public sealed partial class MainWindow : Window
                 Title = "Error",
                 Content = "Name and Email are required.",
                 CloseButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
+                XamlRoot = NameTextBox.XamlRoot
             };
             await dialog.ShowAsync();
             return;
         }
 
-        var customer = new Customer
-        {
-            Id = Guid.NewGuid().ToString(),
-            Month = PathHelper.GetMonth(),
-            Date = PathHelper.GetDay(),
-            Editor = _editor,
-            Name = name,
-            Email = email
-        };
-
-        // Save to user's database
         string dbPath = PathHelper.GetUserDbPath(_editor);
         var repo = new CustomerRepository(dbPath);
-        repo.AddCustomer(customer);
 
-        // Create folder in NAS for customer
-        PathHelper.GetCustomerFolder(_editor, customer.Name);
+        if (_customerBeingEdited is not null)
+        {
+            // We're editing an existing customer
+            string oldName = _customerBeingEdited.Name;
+            string newName = name;
 
-        // Update the UI list
-        _customers.Add(customer);
+            _customerBeingEdited.Name = name;
+            _customerBeingEdited.Email = email;
 
-        // Clear input
+            repo.UpdateCustomer(_customerBeingEdited);
+
+            // Rename folder if customer name changed
+            string oldFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
+            string newFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, newName);
+
+            if (Directory.Exists(oldFolderPath) && !Directory.Exists(newFolderPath))
+            {
+                Directory.Move(oldFolderPath, newFolderPath);
+            }
+
+            _customerBeingEdited = null;
+            AddButton.Content = "Add Customer";
+        }
+        else
+        {
+            // We're adding a new customer
+            var customer = new Customer
+            {
+                Id = Guid.NewGuid().ToString(),
+                Month = PathHelper.GetMonth(),
+                Date = PathHelper.GetDay(),
+                Editor = _editor,
+                Name = name,
+                Email = email
+            };
+
+            repo.AddCustomer(customer);
+            PathHelper.GetCustomerFolder(_editor, customer.Name);
+        }
+
+        // Clear input fields
         NameTextBox.Text = "";
         EmailTextBox.Text = "";
+
+        // Refresh customer list
+        LoadCustomers();
 
         var successDialog = new ContentDialog
         {
             Title = "Success",
-            Content = "Customer added successfully.",
+            Content = "Customer saved successfully.",
             CloseButtonText = "OK",
-            XamlRoot = this.Content.XamlRoot
+            XamlRoot = NameTextBox.XamlRoot
         };
         await successDialog.ShowAsync();
     }
@@ -96,6 +124,32 @@ public sealed partial class MainWindow : Window
         if (e.Key == Windows.System.VirtualKey.Enter)
         {
             AddCustomer_Click(sender, new RoutedEventArgs());
+        }
+    }
+
+    private void EditCustomer_Click(object sender, RoutedEventArgs e)
+    {
+        if (CustomerDataGrid.SelectedItem is Customer selectedCustomer)
+        {
+            _customerBeingEdited = selectedCustomer;
+
+            // Fill input fields with selected customer's data
+            NameTextBox.Text = selectedCustomer.Name;
+            EmailTextBox.Text = selectedCustomer.Email;
+
+            // Change the Add button to "Update"
+            AddButton.Content = "Update Customer";
+        }
+        else
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "No Selection",
+                Content = "Please select a customer to edit.",
+                CloseButtonText = "OK",
+                XamlRoot = NameTextBox.XamlRoot
+            };
+            _ = dialog.ShowAsync();
         }
     }
 
@@ -111,7 +165,7 @@ public sealed partial class MainWindow : Window
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         LoadCustomers();
-    }
+    }    
 
     private async void DeleteCustomer_Click(object sender, RoutedEventArgs e)
     {
