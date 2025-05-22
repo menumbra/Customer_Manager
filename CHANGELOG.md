@@ -7,6 +7,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Search/filter feature for customer list:
+  - Real-time filtering by name or email
+  - Automatically updates the DataGrid as user types
+
+
+### Added
 - Delete Customer feature:
   - Shows confirmation dialog before deleting
   - Removes selected record from the database
