@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- Removed global Delete button and added per-row delete icon
+- Converted customer edit to use popup ContentDialog
+- Improved layout and spacing for minimalist UI
+- Added double-click edit trigger on DataGrid row
+
 ### Added
 - SME and SV toggle switches with automatic value mapping
 - Debug logging for key press detection (`Debug.WriteLine`)
