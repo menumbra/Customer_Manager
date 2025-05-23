@@ -10,40 +10,126 @@
     mc:Ignorable="d"
     Title="Customer Manager">
 
-    <Window.SystemBackdrop>
-        <MicaBackdrop />
-    </Window.SystemBackdrop>
+    <Grid x:Name="RootGrid" Padding="20" RowSpacing="16">
 
-    <StackPanel Padding="20" Spacing="10">
-        <TextBox x:Name="NameTextBox" Header="Customer Name" />
-        <TextBox x:Name="EmailTextBox" Header="Email Address" KeyDown="EmailTextBox_KeyDown" />
-        <ToggleSwitch x:Name="SmeSwitch" Header="SME" />
-        <ToggleSwitch x:Name="SvSwitch" Header="SV" />
+        <!-- ✅ Responsive layout Visual States -->
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="AdaptiveStates">
+                <VisualState x:Name="Narrow">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="InputPanel.Orientation" Value="Vertical"/>
+                    </VisualState.Setters>
+                </VisualState>
+                <VisualState x:Name="Wide">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600" />
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="InputPanel.Orientation" Value="Horizontal"/>
+                    </VisualState.Setters>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <Button x:Name="AddButton" Content="Add Customer" Click="AddCustomer_Click" />
-        <Button x:Name="EditButton" Content="Edit Selected" Click="EditCustomer_Click" />
-        <Button x:Name="DeleteButton" Content="Delete Selected" Click="DeleteCustomer_Click" />
-        <Button x:Name="RefreshButton" Content="🔄 Refresh List" Click="RefreshButton_Click" />
+        <!-- Header -->
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <TextBox x:Name="SearchTextBox"
-         Header="Search"
-         PlaceholderText="Search by name or email"
-         TextChanged="SearchTextBox_TextChanged"
-         Margin="0,10,0,0"/>
+            <StackPanel>
+                <TextBlock Text="🧾 Customer Entry" FontSize="24" FontWeight="Bold" />
+                <TextBlock x:Name="StateLabel" FontSize="12" Foreground="Green" />
+            </StackPanel>
 
+            <TextBlock x:Name="UserLabel"
+                       Grid.Column="1"
+                       Text="Logged in as: USER"
+                       VerticalAlignment="Center"
+                       FontSize="12"
+                       Foreground="Gray"
+                       Margin="0,0,0,4"/>
+        </Grid>
+
+        <!-- Input Fields -->
+        <StackPanel x:Name="InputPanel" Grid.Row="1" Orientation="Horizontal" Spacing="12">
+            <TextBox x:Name="NameTextBox" Header="Customer Name" Width="200"/>
+            <TextBox x:Name="EmailTextBox" Header="Email" Width="200" KeyDown="EmailTextBox_KeyDown"/>
+            <ToggleSwitch x:Name="SmeSwitch" Header="SME"/>
+            <ToggleSwitch x:Name="SvSwitch" Header="SV"/>
+        </StackPanel>
+
+        <!-- Buttons and Search -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Spacing="10">
+            <Button x:Name="AddButton" Click="AddCustomer_Click">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE710;" />
+                    <!-- Add -->
+                    <TextBlock Text="Add" Margin="4,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <Button x:Name="RefreshButton" Click="RefreshButton_Click">
+                <StackPanel Orientation="Horizontal">
+                    <FontIcon Glyph="&#xE72C;" />
+                    <!-- Refresh -->
+                    <TextBlock Text="Refresh" Margin="4,0,0,0"/>
+                </StackPanel>
+            </Button>
+
+            <TextBox x:Name="SearchTextBox"
+                     Header="Search"
+                     PlaceholderText="Search by name or email"
+                     TextChanged="SearchTextBox_TextChanged"
+                     Width="200"/>
+        </StackPanel>
+
+        <!-- DataGrid -->
         <toolkit:DataGrid
             x:Name="CustomerDataGrid"
+            IsReadOnly="True"
+            Grid.Row="3"
             AutoGenerateColumns="False"
-            Margin="0,20,0,0"
-            Height="300">
+            Margin="0,10,0,0"
+            AlternatingRowBackground="LightGray"
+            HeadersVisibility="Column"
+            CanUserSortColumns="True"
+            GridLinesVisibility="Horizontal"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
 
             <toolkit:DataGrid.Columns>
                 <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
                 <toolkit:DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
                 <toolkit:DataGridTextColumn Header="SME" Binding="{Binding SME}" Width="Auto" />
                 <toolkit:DataGridTextColumn Header="SV" Binding="{Binding SV}" Width="Auto" />
+
+                <toolkit:DataGridTemplateColumn Header=" ">
+                    <toolkit:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="DeleteRow_Click"
+                    Margin="4,0,4,0"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    ToolTipService.ToolTip="Delete">
+                                <FontIcon Glyph="&#xE74D;" FontSize="16" Foreground="Crimson"/>
+                            </Button>
+                        </DataTemplate>
+                    </toolkit:DataGridTemplateColumn.CellTemplate>
+                </toolkit:DataGridTemplateColumn>
+
             </toolkit:DataGrid.Columns>
         </toolkit:DataGrid>
-    </StackPanel>
+    </Grid>
 </Window>

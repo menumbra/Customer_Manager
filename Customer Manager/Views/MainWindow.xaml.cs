@@ -35,54 +35,33 @@ public sealed partial class MainWindow : Window
     {
         this.InitializeComponent();
         _editor = editor;
+
+        CustomerDataGrid.DoubleTapped += CustomerDataGrid_DoubleTapped;
+
+
+        // Hook up size change for diagnostics
+        this.SizeChanged += MainWindow_SizeChanged;
+
+        UserLabel.Text = $"Logged in as: {_editor}";
         LoadCustomers();
+    }
+
+    private void MainWindow_SizeChanged(object sender, WindowSizeChangedEventArgs e)
+    {
+        var width = e.Size.Width;
+        StateLabel.Text = $"Layout: {(width < 600 ? "Narrow" : "Wide")}";
     }
 
     private async void AddCustomer_Click(object sender, RoutedEventArgs e)
     {
-        string name = NameTextBox.Text.Trim();
-        string email = EmailTextBox.Text.Trim();
-
-        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+        var dialog = new CustomerDialog
         {
-            var dialog = new ContentDialog
-            {
-                Title = "Error",
-                Content = "Name and Email are required.",
-                CloseButtonText = "OK",
-                XamlRoot = NameTextBox.XamlRoot
-            };
-            await dialog.ShowAsync();
-            return;
-        }
+            XamlRoot = this.Content.XamlRoot // required for WinUI 3 dialogs
+        };
 
-        string dbPath = PathHelper.GetUserDbPath(_editor);
-        var repo = new CustomerRepository(dbPath);
+        var result = await dialog.ShowAsync();
 
-        if (_customerBeingEdited is not null)
-        {
-            string oldName = _customerBeingEdited.Name;
-            string newName = name;
-
-            _customerBeingEdited.Name = name;
-            _customerBeingEdited.Email = email;
-            _customerBeingEdited.SME = SmeSwitch.IsOn ? "IG" : "";
-            _customerBeingEdited.SV = SvSwitch.IsOn ? "HC" : "";
-
-            repo.UpdateCustomer(_customerBeingEdited);
-
-            string oldFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
-            string newFolderPath = PathHelper.GetCustomerFolderPathOnly(_editor, newName);
-
-            if (Directory.Exists(oldFolderPath) && !Directory.Exists(newFolderPath))
-            {
-                Directory.Move(oldFolderPath, newFolderPath);
-            }
-
-            _customerBeingEdited = null;
-            AddButton.Content = "Add Customer";
-        }
-        else
+        if (result == ContentDialogResult.Primary)
         {
             var customer = new Customer
             {
@@ -90,32 +69,21 @@ public sealed partial class MainWindow : Window
                 Month = PathHelper.GetMonth(),
                 Date = PathHelper.GetDay(),
                 Editor = _editor,
-                Name = name,
-                Email = email,
-                SME = SmeSwitch.IsOn ? "IG" : "",
-                SV = SvSwitch.IsOn ? "HC" : ""
+                Name = dialog.CustomerName,
+                Email = dialog.CustomerEmail,
+                SME = dialog.IsSme ? "IG" : "",
+                SV = dialog.IsSv ? "HC" : ""
             };
 
+            string dbPath = PathHelper.GetUserDbPath(_editor);
+            var repo = new CustomerRepository(dbPath);
             repo.AddCustomer(customer);
             PathHelper.GetCustomerFolder(_editor, customer.Name);
+
+            LoadCustomers();
         }
-
-        NameTextBox.Text = "";
-        EmailTextBox.Text = "";
-        SmeSwitch.IsOn = false;
-        SvSwitch.IsOn = false;
-
-        LoadCustomers();
-
-        var successDialog = new ContentDialog
-        {
-            Title = "Success",
-            Content = "Customer saved successfully.",
-            CloseButtonText = "OK",
-            XamlRoot = NameTextBox.XamlRoot
-        };
-        await successDialog.ShowAsync();
     }
+
 
     private void EmailTextBox_KeyDown(object sender, KeyRoutedEventArgs e)
     {
@@ -123,33 +91,50 @@ public sealed partial class MainWindow : Window
         {
             AddCustomer_Click(sender, new RoutedEventArgs());
         }
-    }
+    }   
 
-    private void EditCustomer_Click(object sender, RoutedEventArgs e)
+    private async void CustomerDataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
     {
-        if (CustomerDataGrid.SelectedItem is Customer selectedCustomer)
+        if (CustomerDataGrid.SelectedItem is Customer selected)
         {
-            _customerBeingEdited = selectedCustomer;
-
-            NameTextBox.Text = selectedCustomer.Name;
-            EmailTextBox.Text = selectedCustomer.Email;
-            SmeSwitch.IsOn = selectedCustomer.SME == "IG";
-            SvSwitch.IsOn = selectedCustomer.SV == "HC";
-
-            AddButton.Content = "Update Customer";
-        }
-        else
-        {
-            var dialog = new ContentDialog
+            var dialog = new CustomerDialog
             {
-                Title = "No Selection",
-                Content = "Please select a customer to edit.",
-                CloseButtonText = "OK",
-                XamlRoot = NameTextBox.XamlRoot
+                XamlRoot = this.Content.XamlRoot
             };
-            _ = dialog.ShowAsync();
+
+            dialog.SetInitialData(selected.Name, selected.Email, selected.SME, selected.SV);
+
+            var result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                string oldName = selected.Name;
+
+                selected.Name = dialog.CustomerName;
+                selected.Email = dialog.CustomerEmail;
+                selected.SME = dialog.IsSme ? "IG" : "";
+                selected.SV = dialog.IsSv ? "HC" : "";
+
+                string dbPath = PathHelper.GetUserDbPath(_editor);
+                var repo = new CustomerRepository(dbPath);
+                repo.UpdateCustomer(selected);
+
+                if (oldName != selected.Name)
+                {
+                    string oldPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
+                    string newPath = PathHelper.GetCustomerFolderPathOnly(_editor, selected.Name);
+
+                    if (Directory.Exists(oldPath) && !Directory.Exists(newPath))
+                    {
+                        Directory.Move(oldPath, newPath);
+                    }
+                }
+
+                LoadCustomers();
+            }
         }
     }
+
 
     private void LoadCustomers()
     {
@@ -166,9 +151,9 @@ public sealed partial class MainWindow : Window
         LoadCustomers();
     }
 
-    private async void DeleteCustomer_Click(object sender, RoutedEventArgs e)
+    private async void DeleteRow_Click(object sender, RoutedEventArgs e)
     {
-        if (CustomerDataGrid.SelectedItem is Customer selectedCustomer)
+        if (sender is Button button && button.DataContext is Customer selectedCustomer)
         {
             var dialog = new ContentDialog
             {
@@ -176,7 +161,7 @@ public sealed partial class MainWindow : Window
                 Content = $"Are you sure you want to delete {selectedCustomer.Name}?",
                 PrimaryButtonText = "Yes",
                 CloseButtonText = "No",
-                XamlRoot = NameTextBox.XamlRoot
+                XamlRoot = this.Content.XamlRoot
             };
 
             var result = await dialog.ShowAsync();
@@ -186,6 +171,7 @@ public sealed partial class MainWindow : Window
                 var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
                 repo.DeleteCustomer(selectedCustomer.Id);
 
+                // Delete customer folder
                 string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, selectedCustomer.Name);
                 if (Directory.Exists(folderPath))
                 {
@@ -200,26 +186,14 @@ public sealed partial class MainWindow : Window
                             Title = "Folder Delete Error",
                             Content = $"Could not delete folder: {ex.Message}",
                             CloseButtonText = "OK",
-                            XamlRoot = NameTextBox.XamlRoot
+                            XamlRoot = this.Content.XamlRoot
                         };
                         await errorDialog.ShowAsync();
                     }
                 }
 
-                LoadCustomers();
+                LoadCustomers(); // Refresh the table
             }
-        }
-        else
-        {
-            var noSelectionDialog = new ContentDialog
-            {
-                Title = "No Selection",
-                Content = "Please select a customer to delete.",
-                CloseButtonText = "OK",
-                XamlRoot = NameTextBox.XamlRoot
-            };
-
-            await noSelectionDialog.ShowAsync();
         }
     }
 
