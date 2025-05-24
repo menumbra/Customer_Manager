@@ -85,6 +85,40 @@ public sealed partial class MainWindow : Window
         LoadCustomers();
     }
 
+    private void OpenFolder_Click(object sender, RoutedEventArgs e)
+    {
+        if ((sender as FrameworkElement)?.DataContext is Customer customer)
+        {
+            string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, customer.Name);
+            if (Directory.Exists(folderPath))
+            {
+                try
+                {
+                    System.Diagnostics.Process.Start("explorer.exe", folderPath);
+                }
+                catch (Exception ex)
+                {
+                    _ = new ContentDialog
+                    {
+                        Title = "Error Opening Folder",
+                        Content = $"Failed to open folder: {ex.Message}",
+                        CloseButtonText = "OK",
+                        XamlRoot = this.Content.XamlRoot
+                    }.ShowAsync();
+                }
+            }
+            else
+            {
+                _ = new ContentDialog
+                {
+                    Title = "Folder Not Found",
+                    Content = "The folder does not exist.",
+                    CloseButtonText = "OK",
+                    XamlRoot = this.Content.XamlRoot
+                }.ShowAsync();
+            }
+        }
+    }
 
     private async void DeleteRow_Click(object sender, RoutedEventArgs e)
     {

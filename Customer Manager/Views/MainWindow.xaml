@@ -84,11 +84,18 @@
                 <toolkit:DataGridTemplateColumn Header=" ">
                     <toolkit:DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="DeleteRow_Click"
-                                    ToolTipService.ToolTip="Delete"
-                                    Margin="4,0,4,0">
-                                <FontIcon Glyph="&#xE74D;" FontSize="14" Foreground="Crimson"/>
-                            </Button>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                                <Button Click="OpenFolder_Click"
+                        ToolTipService.ToolTip="Open Folder"
+                        Margin="0,0,4,0">
+                                    <FontIcon Glyph="&#xE8B7;" FontSize="14" Foreground="DarkGreen"/>
+                                </Button>
+                                <Button Click="DeleteRow_Click"
+                        ToolTipService.ToolTip="Delete"
+                        Margin="4,0,0,0">
+                                    <FontIcon Glyph="&#xE74D;" FontSize="14" Foreground="Crimson"/>
+                                </Button>
+                            </StackPanel>
                         </DataTemplate>
                     </toolkit:DataGridTemplateColumn.CellTemplate>
                 </toolkit:DataGridTemplateColumn>
