@@ -6,6 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- Automatically create Photos and Videos subfolders for each customer.
+
+### Added
+- Open Folder button per customer row for quick access
+
+### Fixed
+- Resolved XAML error with multiple elements in DataGridTemplateColumn
+
 ### Changed
 - Removed global Delete button and added per-row delete icon
 - Converted customer edit to use popup ContentDialog
