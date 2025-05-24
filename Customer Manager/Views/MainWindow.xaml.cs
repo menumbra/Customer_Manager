@@ -80,6 +80,12 @@ public sealed partial class MainWindow : Window
         }
     }
 
+    private void RefreshButton_Click(object sender, RoutedEventArgs e)
+    {
+        LoadCustomers();
+    }
+
+
     private async void DeleteRow_Click(object sender, RoutedEventArgs e)
     {
         if ((sender as FrameworkElement)?.DataContext is Customer customer)

@@ -26,31 +26,42 @@
             <TextBlock Text="🧾 Customer Manager"
                        FontSize="24"
                        FontWeight="Bold"
-                       VerticalAlignment="Center" />
-
-            <Button x:Name="AddButton"
-                    Grid.Column="1"
-                    Click="AddCustomer_Click"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Center"
-                    Margin="10,0,0,0">
-                <StackPanel Orientation="Horizontal">
-                    <FontIcon Glyph="&#xE710;" />
-                    <TextBlock Text="Add" Margin="4,0,0,0" />
-                </StackPanel>
-            </Button>
+                       VerticalAlignment="Center" />            
         </Grid>
 
-        <!-- Search box -->
-        <TextBox x:Name="SearchTextBox"
-                 Grid.Row="1"
-                 Header="Search"
-                 PlaceholderText="Search by name or email"
-                 TextChanged="SearchTextBox_TextChanged"
-                 Margin="0,10,0,0"
-                 Width="300"/>
+        <!-- Row for Add, Refresh, and Search -->
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
 
-        <!-- DataGrid -->
+            <!-- Search Box on the left -->
+            <TextBox x:Name="SearchTextBox"
+             Grid.Column="0"
+             PlaceholderText="Search by name or email"
+             TextChanged="SearchTextBox_TextChanged"
+             Width="300"
+             VerticalAlignment="Center"
+             HorizontalAlignment="Left"
+             Margin="0,0,20,0"/>
+
+            <!-- Icon Buttons (Right aligned) -->
+            <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="10" VerticalAlignment="Center">
+                <Button x:Name="AddButton"
+                Click="AddCustomer_Click"
+                ToolTipService.ToolTip="Add">
+                    <FontIcon Glyph="&#xE710;" />
+                </Button>
+
+                <Button x:Name="RefreshButton"
+                Click="RefreshButton_Click"
+                ToolTipService.ToolTip="Refresh">
+                    <FontIcon Glyph="&#xE72C;" />
+                </Button>
+            </StackPanel>
+        </Grid>
+        
         <toolkit:DataGrid
              x:Name="CustomerDataGrid"
                 Grid.Row="2"
