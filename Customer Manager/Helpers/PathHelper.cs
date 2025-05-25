@@ -30,10 +30,31 @@ public static class PathHelper
 
     public static string GetCustomerFolder(string editor, string customerName)
     {
-        string path = Path.Combine(baseNas, GetMonth(), GetDay(), editor, customerName);
-        Directory.CreateDirectory(path);
-        return path;
+        string basePath = GetCustomerFolderPathOnly(editor, customerName);
+
+        // Create the main customer folder
+        if (!Directory.Exists(basePath))
+        {
+            Directory.CreateDirectory(basePath);
+        }
+
+        // Create Photos and Videos subfolders
+        string photosPath = Path.Combine(basePath, "Photos");
+        string videosPath = Path.Combine(basePath, "Videos");
+
+        if (!Directory.Exists(photosPath))
+        {
+            Directory.CreateDirectory(photosPath);
+        }
+
+        if (!Directory.Exists(videosPath))
+        {
+            Directory.CreateDirectory(videosPath);
+        }
+
+        return basePath;
     }
+
 
     public static string GetCustomerFolderPathOnly(string editor, string customerName)
     {

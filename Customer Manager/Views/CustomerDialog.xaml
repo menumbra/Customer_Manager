@@ -9,7 +9,38 @@
     CloseButtonText="Cancel"
     DefaultButton="Primary">
 
-    <StackPanel Spacing="12">
+    <ContentDialog.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition />
+        </TransitionCollection>
+    </ContentDialog.Transitions>
+
+    <ContentDialog.Resources>
+        <Storyboard x:Name="EntranceStoryboard">
+            <DoubleAnimation
+            Storyboard.TargetName="AnimatedPanel"
+            Storyboard.TargetProperty="Opacity"
+            From="0"
+            To="1"
+            Duration="0:0:0.3" />
+
+            <DoubleAnimation
+            Storyboard.TargetName="AnimatedPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+            From="20"
+            To="0"
+            Duration="0:0:0.3"
+            EasingFunction="{StaticResource DefaultEase}" />
+        </Storyboard>
+
+        <QuadraticEase x:Key="DefaultEase" EasingMode="EaseOut" />
+    </ContentDialog.Resources>
+
+    <StackPanel x:Name="AnimatedPanel" Spacing="12" Opacity="0">
+        <StackPanel.RenderTransform>
+            <TranslateTransform Y="20" />
+        </StackPanel.RenderTransform>
+        
         <TextBox x:Name="NameTextBox" Header="Customer Name" />
         <TextBox x:Name="EmailTextBox" Header="Email Address" />
         <ToggleSwitch x:Name="SmeSwitch" Header="SME (IG)" />

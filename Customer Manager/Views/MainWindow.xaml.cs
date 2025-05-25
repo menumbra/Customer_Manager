@@ -1,9 +1,10 @@
-using Customer_Manager.Data;
+﻿using Customer_Manager.Data;
 using Customer_Manager.Helpers;
 using Customer_Manager.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -27,10 +28,17 @@ public sealed partial class MainWindow : Window
     {
         string dbPath = PathHelper.GetUserDbPath(_editor);
         var repo = new CustomerRepository(dbPath);
-        var list = repo.GetCustomers();
-        _customers = new ObservableCollection<Customer>(list);
+        var customers = repo.GetCustomers(); // Renamed from 'list'
+
+        _customers = new ObservableCollection<Customer>(customers);
         CustomerDataGrid.ItemsSource = _customers;
+
+        // 🧮 Count and update UI
+        TotalCountText.Text = $"Total: {customers.Count}";
+        IgCountText.Text = $"IG: {customers.Count(c => c.SME == "IG")}";
+        HcCountText.Text = $"HC: {customers.Count(c => c.SV == "HC")}";
     }
+
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {

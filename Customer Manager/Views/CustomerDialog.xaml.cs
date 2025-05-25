@@ -1,5 +1,6 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Animation;
 
 namespace Customer_Manager.Views;
 
@@ -13,6 +14,13 @@ public sealed partial class CustomerDialog : ContentDialog
     public CustomerDialog()
     {
         this.InitializeComponent();
+        this.Loaded += CustomerDialog_Loaded;
+    }
+
+    private void CustomerDialog_Loaded(object sender, RoutedEventArgs e)
+    {
+        var storyboard = (Storyboard)this.Resources["EntranceStoryboard"];
+        storyboard.Begin();
     }
 
     public void SetInitialData(string name, string email, string sme, string sv)
