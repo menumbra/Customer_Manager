@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -36,8 +36,8 @@ public sealed partial class LoginWindow : Window
 
         if (UserRepository.ValidateUser(username, password, out string role))
         {
-            var main = new MainWindow(username); // Pass logged-in user
-            main.Activate();
+            var shell = new Shell(username); // ✅ Pass logged-in user
+            shell.Activate();
             this.Close();
         }
         else

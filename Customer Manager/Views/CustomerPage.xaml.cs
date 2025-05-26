@@ -4,7 +4,6 @@ using Customer_Manager.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media.Animation;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -12,15 +11,16 @@ using System.Linq;
 
 namespace Customer_Manager.Views;
 
-public sealed partial class MainWindow : Window
+public sealed partial class CustomerPage : Page
 {
     private readonly string _editor;
     private ObservableCollection<Customer> _customers = new();
 
-    public MainWindow(string editor)
+    public static string CurrentEditor { get; set; } = ""; // Set from Shell
+    public CustomerPage()
     {
         this.InitializeComponent();
-        _editor = editor;
+        _editor = CurrentEditor;
         LoadCustomers();
     }
 
@@ -28,17 +28,15 @@ public sealed partial class MainWindow : Window
     {
         string dbPath = PathHelper.GetUserDbPath(_editor);
         var repo = new CustomerRepository(dbPath);
-        var customers = repo.GetCustomers(); // Renamed from 'list'
+        var customers = repo.GetCustomers();
 
         _customers = new ObservableCollection<Customer>(customers);
         CustomerDataGrid.ItemsSource = _customers;
 
-        // 🧮 Count and update UI
         TotalCountText.Text = $"Total: {customers.Count}";
         IgCountText.Text = $"IG: {customers.Count(c => c.SME == "IG")}";
         HcCountText.Text = $"HC: {customers.Count(c => c.SV == "HC")}";
     }
-
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
@@ -79,8 +77,7 @@ public sealed partial class MainWindow : Window
                 Editor = _editor
             };
 
-            string dbPath = PathHelper.GetUserDbPath(_editor);
-            var repo = new CustomerRepository(dbPath);
+            var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
             repo.AddCustomer(customer);
 
             PathHelper.GetCustomerFolder(_editor, customer.Name);
@@ -100,30 +97,7 @@ public sealed partial class MainWindow : Window
             string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, customer.Name);
             if (Directory.Exists(folderPath))
             {
-                try
-                {
-                    System.Diagnostics.Process.Start("explorer.exe", folderPath);
-                }
-                catch (Exception ex)
-                {
-                    _ = new ContentDialog
-                    {
-                        Title = "Error Opening Folder",
-                        Content = $"Failed to open folder: {ex.Message}",
-                        CloseButtonText = "OK",
-                        XamlRoot = this.Content.XamlRoot
-                    }.ShowAsync();
-                }
-            }
-            else
-            {
-                _ = new ContentDialog
-                {
-                    Title = "Folder Not Found",
-                    Content = "The folder does not exist.",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.Content.XamlRoot
-                }.ShowAsync();
+                System.Diagnostics.Process.Start("explorer.exe", folderPath);
             }
         }
     }
@@ -150,20 +124,7 @@ public sealed partial class MainWindow : Window
                 string folderPath = PathHelper.GetCustomerFolderPathOnly(_editor, customer.Name);
                 if (Directory.Exists(folderPath))
                 {
-                    try
-                    {
-                        Directory.Delete(folderPath, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        await new ContentDialog
-                        {
-                            Title = "Folder Delete Error",
-                            Content = $"Could not delete folder: {ex.Message}",
-                            CloseButtonText = "OK",
-                            XamlRoot = this.Content.XamlRoot
-                        }.ShowAsync();
-                    }
+                    Directory.Delete(folderPath, true);
                 }
 
                 LoadCustomers();
@@ -211,5 +172,4 @@ public sealed partial class MainWindow : Window
             }
         }
     }
-
 }

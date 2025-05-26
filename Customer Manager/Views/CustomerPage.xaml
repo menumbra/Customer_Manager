@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="Customer_Manager.Views.CustomerPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Customer_Manager.Views"
+    xmlns:toolkit="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="12">
+
+            <!-- Page Title -->
+            <!--<TextBlock Text="Customers"
+                       FontSize="28"
+                       FontWeight="SemiBold"
+                       Margin="0,0,0,8"/>-->
+
+            <!-- Toolbar -->
+            <StackPanel Orientation="Horizontal" Spacing="8">
+                <Button x:Name="AddButton" Style="{StaticResource AnimatedIconButtonStyle}" Content="➕" Click="AddCustomer_Click"/>
+                <Button x:Name="RefreshButton" Style="{StaticResource AnimatedIconButtonStyle}" Content="🔄" Click="RefreshButton_Click"/>
+                <TextBox x:Name="SearchTextBox" PlaceholderText="Search..." Width="240" TextChanged="SearchTextBox_TextChanged"/>
+            </StackPanel>
+
+            <!-- Customer Counts -->
+            <StackPanel Orientation="Horizontal" Spacing="24">
+                <TextBlock x:Name="TotalCountText" FontSize="13"/>
+                <TextBlock x:Name="IgCountText" FontSize="13"/>
+                <TextBlock x:Name="HcCountText" FontSize="13"/>
+            </StackPanel>
+
+            <!-- Data Grid -->
+            <toolkit:DataGrid
+                x:Name="CustomerDataGrid"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
+                MinHeight="300"
+                GridLinesVisibility="None"
+                HeadersVisibility="Column"
+                CornerRadius="4"
+                DoubleTapped="CustomerDataGrid_DoubleTapped">
+
+                <toolkit:DataGrid.Columns>
+                    <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
+                    <toolkit:DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
+                    <toolkit:DataGridTextColumn Header="SME" Binding="{Binding SME}" Width="80" />
+                    <toolkit:DataGridTextColumn Header="SV" Binding="{Binding SV}" Width="80" />
+                    <toolkit:DataGridTemplateColumn Header="Actions" Width="120">
+                        <toolkit:DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
+                                    <Button Content="📂" Style="{StaticResource AnimatedIconButtonStyle}" Click="OpenFolder_Click"/>
+                                    <Button Content="🗑" Style="{StaticResource AnimatedIconButtonStyle}" Click="DeleteRow_Click"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </toolkit:DataGridTemplateColumn.CellTemplate>
+                    </toolkit:DataGridTemplateColumn>
+                </toolkit:DataGrid.Columns>
+            </toolkit:DataGrid>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
+
