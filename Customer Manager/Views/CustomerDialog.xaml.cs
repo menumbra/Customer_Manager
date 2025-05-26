@@ -30,4 +30,26 @@ public sealed partial class CustomerDialog : ContentDialog
         SmeSwitch.IsOn = sme == "IG";
         SvSwitch.IsOn = sv == "HC";
     }
+
+    private void CustomerDialog_PrimaryButtonClick(ContentDialog sender, ContentDialogButtonClickEventArgs args)
+    {
+        string name = NameTextBox.Text.Trim();
+        string email = EmailTextBox.Text.Trim();
+
+        if (string.IsNullOrWhiteSpace(name) || string.IsNullOrWhiteSpace(email))
+        {
+            // Prevent dialog from closing
+            args.Cancel = true;
+
+            ContentDialog errorDialog = new()
+            {
+                Title = "Missing Information",
+                Content = "Both Name and Email fields are required.",
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+            _ = errorDialog.ShowAsync();
+        }
+    }
+
 }

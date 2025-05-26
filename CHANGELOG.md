@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### UI/UX Improvements
+- Added signed-in user info in NavigationView with rounded initials avatar
+- Centered avatar and name vertically for a modern Fluent layout
+- Removed separator line, added subtle spacing for cleaner hierarchy
+
 ### Added
 - UI/UX: Add signed-in user block in NavigationView with initials avatar and polished spacing
 - Display user initials in a rounded avatar above the name

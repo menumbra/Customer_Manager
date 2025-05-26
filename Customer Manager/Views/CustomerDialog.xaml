@@ -7,6 +7,7 @@
     Title="Customer Details"
     PrimaryButtonText="Save"
     CloseButtonText="Cancel"
+    PrimaryButtonClick="CustomerDialog_PrimaryButtonClick"
     DefaultButton="Primary">
 
     <ContentDialog.Transitions>
