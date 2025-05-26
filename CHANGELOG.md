@@ -7,6 +7,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- Adaptive NavigationView layout with automatic pane switching (Auto mode).
+- Custom Fluent-style title bar using NavigationView.Header.
+- Animated icon buttons for Add, Refresh, Open Folder, and Delete.
+
+### Changed
+- Replaced MainWindow with Shell window following Fluent design.
+- Restructured app navigation to use NavigationView.
+- Improved dark theme appearance and visual hierarchy.
+- Resized default window to 900x600 for better startup UX.
+- Moved title "Customer Manager" into NavigationView header for consistent styling.
+
+### Fixed
+- Runtime crashes due to incorrect `Background` on `<Window>`.
+- Errors caused by broken XAML tag closure.
+- COMException from XAML designer when resources were misapplied.
+- Double title header issue on `CustomerPage`.
+
+### Added
 - Automatically create Photos and Videos subfolders for each customer.
 
 ### Added

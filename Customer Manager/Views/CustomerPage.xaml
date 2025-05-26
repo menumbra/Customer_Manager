@@ -37,10 +37,14 @@
                 x:Name="CustomerDataGrid"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
-                MinHeight="300"
-                GridLinesVisibility="None"
                 HeadersVisibility="Column"
-                CornerRadius="4"
+                GridLinesVisibility="Horizontal"
+                MinHeight="300"
+                RowHeight="40"
+                CornerRadius="8"
+                AlternatingRowBackground="{ThemeResource SolidBackgroundFillColorBase}"
+                BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
+                BorderThickness="1"
                 DoubleTapped="CustomerDataGrid_DoubleTapped">
 
                 <toolkit:DataGrid.Columns>
