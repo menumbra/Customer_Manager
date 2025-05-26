@@ -21,40 +21,62 @@
                         <ScaleTransform ScaleX="1" ScaleY="1" />
                     </Setter.Value>
                 </Setter>
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="Foreground" Value="{ThemeResource TextFillColorPrimary}" />
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="Button">
-                            <Grid x:Name="Root" RenderTransformOrigin="0.5,0.5">
+                            <Grid x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="8">
                                 <Grid.RenderTransform>
                                     <ScaleTransform ScaleX="1" ScaleY="1" />
                                 </Grid.RenderTransform>
 
-                                <!-- Button content -->
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <!-- Button Content -->
+                                <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center" />
 
+                                <!-- Visual States -->
                                 <VisualStateManager.VisualStateGroups>
                                     <VisualStateGroup x:Name="CommonStates">
+
                                         <VisualState x:Name="Normal" />
+
                                         <VisualState x:Name="PointerOver">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="Root"
-                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                                 To="1.1" Duration="0:0:0.15" />
-                                                <DoubleAnimation Storyboard.TargetName="Root"
-                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                                                 To="1.1" Duration="0:0:0.15" />
+                                                <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                        To="1.1" Duration="0:0:0.15" />
+                                                <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                        To="1.1" Duration="0:0:0.15" />
                                             </Storyboard>
                                         </VisualState>
+
                                         <VisualState x:Name="Pressed">
                                             <Storyboard>
-                                                <DoubleAnimation Storyboard.TargetName="Root"
-                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                                                 To="0.95" Duration="0:0:0.1" />
-                                                <DoubleAnimation Storyboard.TargetName="Root"
-                                                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                                                 To="0.95" Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                        To="0.95" Duration="0:0:0.1" />
+                                                <DoubleAnimation
+                                        Storyboard.TargetName="Root"
+                                        Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                        To="0.95" Duration="0:0:0.1" />
                                             </Storyboard>
                                         </VisualState>
+
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="Root"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     To="0.4"
+                                                     Duration="0:0:0.2" />
+                                            </Storyboard>
+                                        </VisualState>
+
                                     </VisualStateGroup>
                                 </VisualStateManager.VisualStateGroups>
                             </Grid>
@@ -62,6 +84,12 @@
                     </Setter.Value>
                 </Setter>
             </Style>
+
+            <!-- Center-align DataGrid cells and headers -->
+            <Style x:Key="CenteredCellStyle" TargetType="TextBlock">
+                <Setter Property="HorizontalAlignment" Value="Center" />
+            </Style>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

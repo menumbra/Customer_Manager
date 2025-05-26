@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "E:\\Repos\\Customer Manager\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\customerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\customerpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\shell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\shell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\shell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\shell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -23,27 +23,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Shell.xaml",
-              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
-              "RelativeDocumentMoniker": "Customer Manager\\Views\\Shell.xaml",
-              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
-              "RelativeToolTip": "Customer Manager\\Views\\Shell.xaml",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABwAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-25T17:05:22.871Z",
+              "Title": "Shell.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\Shell.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\Views\\Shell.xaml.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAADwv1EAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T14:29:46.8Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CustomerPage.xaml",
-              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\CustomerPage.xaml",
-              "RelativeDocumentMoniker": "Customer Manager\\Views\\CustomerPage.xaml",
-              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\CustomerPage.xaml",
-              "RelativeToolTip": "Customer Manager\\Views\\CustomerPage.xaml",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAACgAAAAwAAAAAAAAAA==",
+              "Title": "Shell.xaml",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\Shell.xaml",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
+              "RelativeToolTip": "Customer Manager\\Views\\Shell.xaml",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAAAF8AAABJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-25T22:29:51.041Z",
+              "WhenOpened": "2025-05-26T10:59:01.601Z",
               "EditorCaption": ""
             }
           ]

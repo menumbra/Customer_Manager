@@ -7,6 +7,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Added
+- UI/UX: Add signed-in user block in NavigationView with initials avatar and polished spacing
+- Display user initials in a rounded avatar above the name
+- Stack initials and name vertically, centered in NavView
+- Added clean vertical spacing between user block and menu items (no separator line)
+- Improved visual hierarchy and alignment for better Fluent-style navigation experience
+
+
+### Added
 - Adaptive NavigationView layout with automatic pane switching (Auto mode).
 - Custom Fluent-style title bar using NavigationView.Header.
 - Animated icon buttons for Add, Refresh, Open Folder, and Delete.

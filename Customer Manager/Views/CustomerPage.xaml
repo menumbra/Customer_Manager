@@ -12,36 +12,65 @@
     <ScrollViewer>
         <StackPanel Padding="24" Spacing="12">
 
-            <!-- Page Title -->
-            <!--<TextBlock Text="Customers"
-                       FontSize="28"
-                       FontWeight="SemiBold"
-                       Margin="0,0,0,8"/>-->
+            <!-- Toolbar: Search left, buttons right -->
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-            <!-- Toolbar -->
-            <StackPanel Orientation="Horizontal" Spacing="8">
-                <Button x:Name="AddButton" Style="{StaticResource AnimatedIconButtonStyle}" Content="➕" Click="AddCustomer_Click"/>
-                <Button x:Name="RefreshButton" Style="{StaticResource AnimatedIconButtonStyle}" Content="🔄" Click="RefreshButton_Click"/>
-                <TextBox x:Name="SearchTextBox" PlaceholderText="Search..." Width="240" TextChanged="SearchTextBox_TextChanged"/>
-            </StackPanel>
+                <!-- Search -->
+                <TextBox x:Name="SearchTextBox"
+                         PlaceholderText="Search..."
+                         Width="240"
+                         Margin="0,0,16,0"
+                         FontFamily="Segoe UI Variable"
+                         HorizontalAlignment="Left"
+                         TextChanged="SearchTextBox_TextChanged"/>
 
-            <!-- Customer Counts -->
-            <StackPanel Orientation="Horizontal" Spacing="24">
-                <TextBlock x:Name="TotalCountText" FontSize="13"/>
-                <TextBlock x:Name="IgCountText" FontSize="13"/>
-                <TextBlock x:Name="HcCountText" FontSize="13"/>
-            </StackPanel>
+                <!-- Buttons -->
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8"
+                            Grid.Column="1">
 
-            <!-- Data Grid -->
+                    <Button x:Name="AddButton"
+                            Content="&#xE710;"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Width="40"
+                            Height="40"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource AnimatedIconButtonStyle}"
+                            Foreground="{ThemeResource TextFillColorPrimary}"
+                            Click="AddCustomer_Click"
+                            ToolTipService.ToolTip="Add Customer" />
+
+                    <Button x:Name="RefreshButton"
+                            Content="&#xE895;"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="20"
+                            Width="40"
+                            Height="40"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource AnimatedIconButtonStyle}"
+                            Foreground="{ThemeResource TextFillColorPrimary}"
+                            Click="RefreshButton_Click"
+                            ToolTipService.ToolTip="Refresh" />
+                </StackPanel>
+            </Grid>
+
+            <!-- DataGrid -->
             <toolkit:DataGrid
                 x:Name="CustomerDataGrid"
+                SelectionMode="Single"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
                 HeadersVisibility="Column"
-                GridLinesVisibility="Horizontal"
+                GridLinesVisibility="None"
                 MinHeight="300"
                 RowHeight="40"
                 CornerRadius="8"
+                RowBackground="{ThemeResource CardBackgroundFillColorDefaultBrush}"
                 AlternatingRowBackground="{ThemeResource SolidBackgroundFillColorBase}"
                 BorderBrush="{ThemeResource ControlStrokeColorDefaultBrush}"
                 BorderThickness="1"
@@ -49,15 +78,36 @@
 
                 <toolkit:DataGrid.Columns>
                     <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                    <toolkit:DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*" />
-                    <toolkit:DataGridTextColumn Header="SME" Binding="{Binding SME}" Width="80" />
-                    <toolkit:DataGridTextColumn Header="SV" Binding="{Binding SV}" Width="80" />
+                    <toolkit:DataGridTextColumn x:Name="EmailColumn" Header="Email" Binding="{Binding Email}" Width="*" />
+                    <toolkit:DataGridTextColumn Header="SME" 
+                                                Binding="{Binding SME}" 
+                                                Width="80"
+                                                ElementStyle="{StaticResource CenteredCellStyle}" />
+                    <toolkit:DataGridTextColumn Header="SV" 
+                                                Binding="{Binding SV}" 
+                                                Width="80" 
+                                                ElementStyle="{StaticResource CenteredCellStyle}" />
                     <toolkit:DataGridTemplateColumn Header="Actions" Width="120">
                         <toolkit:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="8">
-                                    <Button Content="📂" Style="{StaticResource AnimatedIconButtonStyle}" Click="OpenFolder_Click"/>
-                                    <Button Content="🗑" Style="{StaticResource AnimatedIconButtonStyle}" Click="DeleteRow_Click"/>
+                                    <Button Content="📂"
+                                        Width="36"
+                                        Height="36"
+                                        FontSize="18"
+                                        CornerRadius="8"
+                                        Style="{StaticResource AnimatedIconButtonStyle}"
+                                        Click="OpenFolder_Click"
+                                        ToolTipService.ToolTip="Open Folder" />
+
+                                    <Button Content="🗑"
+                                        Width="36"
+                                        Height="36"
+                                        FontSize="18"
+                                        CornerRadius="8"
+                                        Style="{StaticResource AnimatedIconButtonStyle}"
+                                        Click="DeleteRow_Click"
+                                        ToolTipService.ToolTip="Delete Customer" />
                                 </StackPanel>
                             </DataTemplate>
                         </toolkit:DataGridTemplateColumn.CellTemplate>
@@ -67,4 +117,3 @@
         </StackPanel>
     </ScrollViewer>
 </Page>
-

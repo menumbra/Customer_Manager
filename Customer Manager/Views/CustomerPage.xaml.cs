@@ -4,6 +4,7 @@ using Customer_Manager.Models;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -16,12 +17,54 @@ public sealed partial class CustomerPage : Page
     private readonly string _editor;
     private ObservableCollection<Customer> _customers = new();
 
+    public int TotalCount { get; private set; }
+    public int IgCount { get; private set; }
+    public int HcCount { get; private set; }
+
+    public TextBlock? HeaderTotal { get; set; }
+    public TextBlock? HeaderIg { get; set; }
+    public TextBlock? HeaderHc { get; set; }
+
+
     public static string CurrentEditor { get; set; } = ""; // Set from Shell
     public CustomerPage()
     {
         this.InitializeComponent();
         _editor = CurrentEditor;
+        this.SizeChanged += CustomerPage_SizeChanged;
         LoadCustomers();
+    }
+
+    private void CustomerPage_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        double width = e.NewSize.Width;
+
+        // Hide email if window is narrower than 640px
+        if (EmailColumn != null)
+            EmailColumn.Visibility = width < 640 ? Visibility.Collapsed : Visibility.Visible;
+    }
+
+
+    protected override void OnNavigatedTo(NavigationEventArgs e)
+    {
+        base.OnNavigatedTo(e);
+        UpdateCounters(); // ✅ forces header update when page is shown
+    }
+
+    public void UpdateCounters()
+    {
+        TotalCount = _customers.Count;
+        IgCount = _customers.Count(c => c.SME == "IG");
+        HcCount = _customers.Count(c => c.SV == "HC");
+
+        // ✅ Update NavigationView header if bound
+        if (HeaderTotal != null)
+            HeaderTotal.Text = $"Total: {TotalCount}";
+        if (HeaderIg != null)
+            HeaderIg.Text = $"IG: {IgCount}";
+        if (HeaderHc != null)
+            HeaderHc.Text = $"HC: {HcCount}";
+
     }
 
     private void LoadCustomers()
@@ -33,9 +76,7 @@ public sealed partial class CustomerPage : Page
         _customers = new ObservableCollection<Customer>(customers);
         CustomerDataGrid.ItemsSource = _customers;
 
-        TotalCountText.Text = $"Total: {customers.Count}";
-        IgCountText.Text = $"IG: {customers.Count(c => c.SME == "IG")}";
-        HcCountText.Text = $"HC: {customers.Count(c => c.SV == "HC")}";
+        UpdateCounters();
     }
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -82,12 +123,14 @@ public sealed partial class CustomerPage : Page
 
             PathHelper.GetCustomerFolder(_editor, customer.Name);
             LoadCustomers();
+            UpdateCounters(); // Update counters after adding a new customer
         }
     }
 
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         LoadCustomers();
+        UpdateCounters(); // Update counters after refresh
     }
 
     private void OpenFolder_Click(object sender, RoutedEventArgs e)
@@ -128,6 +171,7 @@ public sealed partial class CustomerPage : Page
                 }
 
                 LoadCustomers();
+                UpdateCounters(); // Update counters after deletion
             }
         }
     }

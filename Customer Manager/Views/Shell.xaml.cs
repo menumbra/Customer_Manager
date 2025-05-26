@@ -24,12 +24,46 @@ namespace Customer_Manager.Views;
 
 public sealed partial class Shell : Window
 {
+    public TextBlock HeaderTotal => HeaderTotalText;
+    public TextBlock HeaderIg => HeaderIgText;
+    public TextBlock HeaderHc => HeaderHcText;
+
+    private readonly string _editor;
+    public string UserDisplayName { get; set; } = "Signed in as ?";
+    public string UserInitials { get; set; } = "??";
+
+
+
     public Shell(string editor)
     {
         this.InitializeComponent();
 
+        _editor = editor;
+        UserDisplayName = $"Signed in as {_editor}";
+        UserInitials = GetInitials(_editor);
+
         // Set editor context
-        CustomerPage.CurrentEditor = editor;
+        CustomerPage.CurrentEditor = _editor;
+
+        var cp = new CustomerPage
+        {
+            HeaderTotal = HeaderTotal,
+            HeaderIg = HeaderIg,
+            HeaderHc = HeaderHc
+        };
+
+        ContentFrame.Navigate(typeof(CustomerPage));
+
+        DispatcherQueue.TryEnqueue(() =>
+        {
+            if (ContentFrame.Content is CustomerPage cp)
+            {
+                cp.HeaderTotal = HeaderTotal;
+                cp.HeaderIg = HeaderIg;
+                cp.HeaderHc = HeaderHc;
+                cp.UpdateCounters();
+            }
+        });
 
         // Setup Fluent window size
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(this);
@@ -39,20 +73,21 @@ public sealed partial class Shell : Window
 
         // 🪟 Fluent Title Bar Customization
         appWindow.TitleBar.ExtendsContentIntoTitleBar = true;
-        appWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-        appWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
+        var isDark = Application.Current.RequestedTheme == ApplicationTheme.Dark;
+        appWindow.TitleBar.ButtonForegroundColor = isDark ? Colors.White : Colors.Black;
 
         // Make NavView the draggable region
         this.SetTitleBar(NavView);
-
-        // Defer navigation until fully activated
-        this.Activated += Shell_Activated;
     }
 
-    private void Shell_Activated(object sender, WindowActivatedEventArgs args)
+    private static string GetInitials(string name)
     {
-        ContentFrame.Navigate(typeof(CustomerPage));
-        this.Activated -= Shell_Activated;
+        if (string.IsNullOrWhiteSpace(name))
+            return "??";
+
+        var parts = name.Split(new[] { ' ', '.', '_' }, StringSplitOptions.RemoveEmptyEntries);
+        if (parts.Length == 1) return parts[0].Substring(0, 1).ToUpper();
+        return string.Concat(parts[0][0], parts[^1][0]).ToUpper();
     }
 
     private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
@@ -68,6 +103,16 @@ public sealed partial class Shell : Window
                     ContentFrame.Navigate(typeof(SettingsPage));
                     break;
             }
+        }
+
+        if (ContentFrame.Content is CustomerPage cp)
+        {
+            // Ensure counts are up-to-date
+            cp.UpdateCounters();
+            // Update header text with current counts
+            HeaderTotalText.Text = $"Total: {cp.TotalCount}";
+            HeaderIgText.Text = $"IG: {cp.IgCount}";
+            HeaderHcText.Text = $"HC: {cp.HcCount}";
         }
     }
 }

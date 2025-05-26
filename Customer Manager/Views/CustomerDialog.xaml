@@ -18,33 +18,42 @@
     <ContentDialog.Resources>
         <Storyboard x:Name="EntranceStoryboard">
             <DoubleAnimation
-            Storyboard.TargetName="AnimatedPanel"
-            Storyboard.TargetProperty="Opacity"
-            From="0"
-            To="1"
-            Duration="0:0:0.3" />
+                Storyboard.TargetName="AnimatedPanel"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.3" />
 
             <DoubleAnimation
-            Storyboard.TargetName="AnimatedPanel"
-            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-            From="20"
-            To="0"
-            Duration="0:0:0.3"
-            EasingFunction="{StaticResource DefaultEase}" />
+                Storyboard.TargetName="AnimatedPanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                From="20"
+                To="0"
+                Duration="0:0:0.3"
+                EasingFunction="{StaticResource DefaultEase}" />
         </Storyboard>
 
         <QuadraticEase x:Key="DefaultEase" EasingMode="EaseOut" />
     </ContentDialog.Resources>
 
-    <StackPanel x:Name="AnimatedPanel" Spacing="12" Opacity="0">
-        <StackPanel.RenderTransform>
-            <TranslateTransform Y="20" />
-        </StackPanel.RenderTransform>
+    <ScrollViewer MaxHeight="500" 
+                  VerticalScrollBarVisibility="Auto"
+                  Padding="0,0,12,0">
         
-        <TextBox x:Name="NameTextBox" Header="Customer Name" />
-        <TextBox x:Name="EmailTextBox" Header="Email Address" />
-        <ToggleSwitch x:Name="SmeSwitch" Header="SME (IG)" />
-        <ToggleSwitch x:Name="SvSwitch" Header="SV (HC)" />
-    </StackPanel>
+
+        <StackPanel x:Name="AnimatedPanel" 
+                    Spacing="12" 
+                    Opacity="0"
+                    Padding="24,16,36,16">
+            <StackPanel.RenderTransform>
+                <TranslateTransform Y="20" />
+            </StackPanel.RenderTransform>
+
+            <TextBox x:Name="NameTextBox" Header="Customer Name" />
+            <TextBox x:Name="EmailTextBox" Header="Email Address" />
+            <ToggleSwitch x:Name="SmeSwitch" Header="SME (IG)" />
+            <ToggleSwitch x:Name="SvSwitch" Header="SV (HC)" />
+        </StackPanel>
+    </ScrollViewer>    
 </ContentDialog>
 
