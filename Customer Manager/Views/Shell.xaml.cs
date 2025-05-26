@@ -38,7 +38,12 @@ public sealed partial class Shell : Window
     {
         this.InitializeComponent();
 
-        NavView.DisplayModeChanged += NavView_DisplayModeChanged;
+        //UpdateUserBlockVisibility(NavView.DisplayMode);
+
+        NavView.PaneOpened += (s, e) => UpdateUserBlockVisibility(true);
+        NavView.PaneClosed += (s, e) => UpdateUserBlockVisibility(false);
+        UpdateUserBlockVisibility(NavView.IsPaneOpen); // force initial check
+
 
         _editor = editor;
         UserDisplayName = $"Signed in as {_editor}";
@@ -82,18 +87,31 @@ public sealed partial class Shell : Window
         this.SetTitleBar(NavView);
     }
 
-    private void NavView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
-    {
-        UpdateUserBlockVisibility(args.DisplayMode);
-    }
+    //private void NavView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+    //{
+    //    UpdateUserBlockVisibility(args.DisplayMode);
+    //}
 
-    private void UpdateUserBlockVisibility(NavigationViewDisplayMode displayMode)
+    //private void UpdateUserBlockVisibility(NavigationViewDisplayMode displayMode)
+    //{
+    //    if (UserBlockItem != null)
+    //    {
+    //        UserBlockItem.Visibility = displayMode == NavigationViewDisplayMode.Expanded
+    //            ? Visibility.Visible
+    //            : Visibility.Collapsed;
+    //    }
+    //}
+
+    //private void NavView_IsPaneOpenChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
+    //{
+    //    UpdateUserBlockVisibility(sender.IsPaneOpen);
+    //}
+
+    private void UpdateUserBlockVisibility(bool isPaneOpen)
     {
         if (UserBlockItem != null)
         {
-            UserBlockItem.Visibility = displayMode == NavigationViewDisplayMode.Expanded
-                ? Visibility.Visible
-                : Visibility.Collapsed;
+            UserBlockItem.Visibility = isPaneOpen ? Visibility.Visible : Visibility.Collapsed;
         }
     }
 

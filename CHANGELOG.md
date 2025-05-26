@@ -111,3 +111,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix: Logout icon display and async method error resolved
 - Refactor: Moved logout logic from SelectionChanged to ItemInvoked for better clarity
 - UI: Logout positioned below Settings for cleaner layout
+- UX: User info now only appears in expanded nav mode for cleaner layout
