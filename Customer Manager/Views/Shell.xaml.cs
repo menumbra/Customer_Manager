@@ -38,6 +38,8 @@ public sealed partial class Shell : Window
     {
         this.InitializeComponent();
 
+        NavView.DisplayModeChanged += NavView_DisplayModeChanged;
+
         _editor = editor;
         UserDisplayName = $"Signed in as {_editor}";
         UserInitials = GetInitials(_editor);
@@ -78,6 +80,21 @@ public sealed partial class Shell : Window
 
         // Make NavView the draggable region
         this.SetTitleBar(NavView);
+    }
+
+    private void NavView_DisplayModeChanged(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+    {
+        UpdateUserBlockVisibility(args.DisplayMode);
+    }
+
+    private void UpdateUserBlockVisibility(NavigationViewDisplayMode displayMode)
+    {
+        if (UserBlockItem != null)
+        {
+            UserBlockItem.Visibility = displayMode == NavigationViewDisplayMode.Expanded
+                ? Visibility.Visible
+                : Visibility.Collapsed;
+        }
     }
 
     private static string GetInitials(string name)

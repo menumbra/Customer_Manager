@@ -110,3 +110,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - Fix: Inline validation message prevents nested dialog runtime error
 - Fix: Logout icon display and async method error resolved
 - Refactor: Moved logout logic from SelectionChanged to ItemInvoked for better clarity
+- UI: Logout positioned below Settings for cleaner layout

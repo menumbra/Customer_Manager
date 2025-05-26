@@ -77,16 +77,23 @@
                 DoubleTapped="CustomerDataGrid_DoubleTapped">
 
                 <toolkit:DataGrid.Columns>
-                    <toolkit:DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*" />
-                    <toolkit:DataGridTextColumn x:Name="EmailColumn" Header="Email" Binding="{Binding Email}" Width="*" />
+                    <toolkit:DataGridTextColumn Header="Name" 
+                                                Binding="{Binding Name}" 
+                                                Width="*" />
+                    
+                    <toolkit:DataGridTextColumn x:Name="EmailColumn" 
+                                                Header="Email" Binding="{Binding Email}" Width="*" />
+                    
                     <toolkit:DataGridTextColumn Header="SME" 
                                                 Binding="{Binding SME}" 
                                                 Width="80"
                                                 ElementStyle="{StaticResource CenteredCellStyle}" />
+                    
                     <toolkit:DataGridTextColumn Header="SV" 
                                                 Binding="{Binding SV}" 
                                                 Width="80" 
                                                 ElementStyle="{StaticResource CenteredCellStyle}" />
+                    
                     <toolkit:DataGridTemplateColumn Header="Actions" Width="120">
                         <toolkit:DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

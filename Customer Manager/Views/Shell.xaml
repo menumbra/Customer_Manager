@@ -70,38 +70,43 @@
         <!-- Navigation Menu Items -->
         <controls:NavigationView.MenuItems>
             <!-- 👤 User Info (non-clickable) -->
-            <controls:NavigationViewItem IsEnabled="False" SelectsOnInvoked="False">
+            <controls:NavigationViewItem x:Name="UserBlockItem"
+                             IsEnabled="False"
+                             SelectsOnInvoked="False">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Padding="8" Spacing="4">
                     <!-- Initials Circle -->
                     <Grid Width="48" Height="48"
-                  Background="{ThemeResource AccentFillColorDefaultBrush}"
-                  CornerRadius="24">
+              Background="{ThemeResource AccentFillColorDefaultBrush}"
+              CornerRadius="24">
                         <TextBlock Text="{Binding UserInitials, ElementName=RootShell}"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="White" />
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="White" />
                     </Grid>
 
                     <!-- Display name -->
                     <TextBlock Text="{Binding UserDisplayName, ElementName=RootShell}"
-                       HorizontalAlignment="Center"
-                       FontSize="13"
-                       FontWeight="SemiLight"
-                       Opacity="0.85"
-                       Foreground="{ThemeResource TextFillColorSecondary}" />
+                   HorizontalAlignment="Center"
+                   FontSize="13"
+                   FontWeight="SemiLight"
+                   Opacity="0.85"
+                   Foreground="{ThemeResource TextFillColorSecondary}" />
                 </StackPanel>
             </controls:NavigationViewItem>
+
 
             <!-- Spacer -->
             <controls:NavigationViewItem IsEnabled="False" Height="16" />
 
             <!-- 📇 Main menu -->
-            <controls:NavigationViewItem Icon="Contact"
-                                 Content="Customers"
-                                 Tag="customers" />
-            <controls:NavigationViewItemSeparator />
+            <controls:NavigationViewItem Tag="customers">
+                <controls:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE77B;" FontFamily="Segoe MDL2 Assets" />
+                </controls:NavigationViewItem.Icon>
+                <TextBlock Text="Customers" />
+            </controls:NavigationViewItem>
 
             <!-- ⚙️ Settings -->
             <controls:NavigationViewItem Icon="Setting"
