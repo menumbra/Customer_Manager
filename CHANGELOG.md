@@ -108,3 +108,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 - First stable version of the Customer Manager app
 - Fix: Prevent empty Name/Email in Add Customer dialog
 - Fix: Inline validation message prevents nested dialog runtime error
+- Fix: Logout icon display and async method error resolved

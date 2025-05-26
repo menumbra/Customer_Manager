@@ -90,7 +90,7 @@ public sealed partial class Shell : Window
         return string.Concat(parts[0][0], parts[^1][0]).ToUpper();
     }
 
-    private async void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
+    private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
     {
         if (args.SelectedItem is NavigationViewItem item)
         {
@@ -99,28 +99,8 @@ public sealed partial class Shell : Window
                 case "customers":
                     ContentFrame.Navigate(typeof(CustomerPage));
                     break;
-
                 case "settings":
                     ContentFrame.Navigate(typeof(SettingsPage));
-                    break;
-
-                case "logout":
-                    var confirmDialog = new ContentDialog
-                    {
-                        Title = "Log Out",
-                        Content = "Are you sure you want to log out?",
-                        PrimaryButtonText = "Log out",
-                        CloseButtonText = "Cancel",
-                        XamlRoot = this.Content.XamlRoot
-                    };
-
-                    var result = await confirmDialog.ShowAsync();
-                    if (result == ContentDialogResult.Primary)
-                    {
-                        var login = new LoginWindow();
-                        login.Activate();
-                        this.Close();
-                    }
                     break;
             }
         }
@@ -135,4 +115,28 @@ public sealed partial class Shell : Window
             HeaderHcText.Text = $"HC: {cp.HcCount}";
         }
     }
+
+    private async void NavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+    {
+        if (args.InvokedItemContainer == LogoutItem)
+        {
+            var confirmDialog = new ContentDialog
+            {
+                Title = "Log Out",
+                Content = "Are you sure you want to log out?",
+                PrimaryButtonText = "Log out",
+                CloseButtonText = "Cancel",
+                XamlRoot = this.Content.XamlRoot
+            };
+
+            var result = await confirmDialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var login = new LoginWindow();
+                login.Activate();
+                this.Close();
+            }
+        }
+    }
+
 }

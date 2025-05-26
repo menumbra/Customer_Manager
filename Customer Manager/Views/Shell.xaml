@@ -18,6 +18,7 @@
         IsBackButtonVisible="Collapsed"
         IsSettingsVisible="False"
         SelectionChanged="NavView_SelectionChanged"
+        ItemInvoked="NavView_ItemInvoked"
         IsTitleBarAutoPaddingEnabled="True"
         Background="{ThemeResource SystemControlAcrylicWindowBrush}">
 
@@ -68,56 +69,60 @@
 
         <!-- Navigation Menu Items -->
         <controls:NavigationView.MenuItems>
-            <!-- 👤 Logged-in user display -->
-            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Padding="8" Spacing="4">
+            <!-- 👤 User Info (non-clickable) -->
+            <controls:NavigationViewItem IsEnabled="False" SelectsOnInvoked="False">
+                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Padding="8" Spacing="4">
+                    <!-- Initials Circle -->
+                    <Grid Width="48" Height="48"
+                  Background="{ThemeResource AccentFillColorDefaultBrush}"
+                  CornerRadius="24">
+                        <TextBlock Text="{Binding UserInitials, ElementName=RootShell}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="White" />
+                    </Grid>
 
-                <!-- Larger Circle with Initials -->
-                <Grid Width="48" Height="48"
-              Background="{ThemeResource AccentFillColorDefaultBrush}"
-              CornerRadius="24">
-                    <TextBlock Text="{Binding UserInitials, ElementName=RootShell}"
+                    <!-- Display name -->
+                    <TextBlock Text="{Binding UserDisplayName, ElementName=RootShell}"
                        HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="18"
-                       FontWeight="Bold"
-                       Foreground="White" />
-                </Grid>
+                       FontSize="13"
+                       FontWeight="SemiLight"
+                       Opacity="0.85"
+                       Foreground="{ThemeResource TextFillColorSecondary}" />
+                </StackPanel>
+            </controls:NavigationViewItem>
 
-                <!-- Display name below -->
-                <TextBlock Text="{Binding UserDisplayName, ElementName=RootShell}"
-                   HorizontalAlignment="Center"
-                   FontSize="13"
-                   FontWeight="SemiLight"
-                   Opacity="0.85"
-                   Foreground="{ThemeResource TextFillColorSecondary}" />
+            <!-- 🚪 Log out -->
+            <controls:NavigationViewItem
+        x:Name="LogoutItem"
+        Tag="logout"
+        SelectsOnInvoked="False">
+                <controls:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE8FF;" FontFamily="Segoe MDL2 Assets" />
+                </controls:NavigationViewItem.Icon>
+                <TextBlock Text="Log out" />
+            </controls:NavigationViewItem>
 
-                <!-- 👤 Logout -->
-                <controls:NavigationViewItem Tag="logout">
-                    <controls:NavigationViewItem.Icon>
-                        <FontIcon Glyph="&#xE8AC;" FontFamily="Segoe MDL2 Assets" />
-                    </controls:NavigationViewItem.Icon>
-                    <TextBlock Text="Log out" />
-                </controls:NavigationViewItem>
-            </StackPanel>
-
-            <!-- 🔹 Add spacing -->
+            <!-- Spacer -->
             <controls:NavigationViewItem IsEnabled="False" Height="16" />
 
-            <!-- 📇 Navigation Items -->
+            <!-- 📇 Main menu -->
             <controls:NavigationViewItem Icon="Contact"
-                                         Content="Customers"
-                                         Tag="customers" />
-
-            <!-- Visual separator before Settings -->
+                                 Content="Customers"
+                                 Tag="customers" />
             <controls:NavigationViewItemSeparator />
 
+            <!-- ⚙️ Settings -->
             <controls:NavigationViewItem Icon="Setting"
-                                         Content="Settings"
-                                         Tag="settings"
-                                         Margin="0,8,0,0"
-                                         FontSize="14"
-                                         FontFamily="Segoe UI Variable" />
+                                 Content="Settings"
+                                 Tag="settings"
+                                 Margin="0,8,0,0"
+                                 FontSize="14"
+                                 FontFamily="Segoe UI Variable" />
         </controls:NavigationView.MenuItems>
+
 
         <!-- Main content area -->
         <Frame x:Name="ContentFrame"/>
