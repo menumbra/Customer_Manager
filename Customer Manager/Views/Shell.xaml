@@ -94,17 +94,6 @@
                 </StackPanel>
             </controls:NavigationViewItem>
 
-            <!-- 🚪 Log out -->
-            <controls:NavigationViewItem
-        x:Name="LogoutItem"
-        Tag="logout"
-        SelectsOnInvoked="False">
-                <controls:NavigationViewItem.Icon>
-                    <FontIcon Glyph="&#xE8FF;" FontFamily="Segoe MDL2 Assets" />
-                </controls:NavigationViewItem.Icon>
-                <TextBlock Text="Log out" />
-            </controls:NavigationViewItem>
-
             <!-- Spacer -->
             <controls:NavigationViewItem IsEnabled="False" Height="16" />
 
@@ -121,8 +110,20 @@
                                  Margin="0,8,0,0"
                                  FontSize="14"
                                  FontFamily="Segoe UI Variable" />
-        </controls:NavigationView.MenuItems>
 
+            <!-- 🚪 Log out -->
+            <controls:NavigationViewItem
+                x:Name="LogoutItem"
+                Tag="logout"
+                SelectsOnInvoked="False">
+
+                <controls:NavigationViewItem.Icon>
+                    <FontIcon Glyph="&#xE8FF;" FontFamily="Segoe MDL2 Assets" />
+                </controls:NavigationViewItem.Icon>
+
+                <TextBlock Text="Log out" />
+            </controls:NavigationViewItem>
+        </controls:NavigationView.MenuItems>
 
         <!-- Main content area -->
         <Frame x:Name="ContentFrame"/>
