@@ -41,15 +41,11 @@ public sealed partial class CustomerDialog : ContentDialog
             // Prevent dialog from closing
             args.Cancel = true;
 
-            ContentDialog errorDialog = new()
-            {
-                Title = "Missing Information",
-                Content = "Both Name and Email fields are required.",
-                CloseButtonText = "OK",
-                XamlRoot = this.XamlRoot
-            };
-            _ = errorDialog.ShowAsync();
+            ErrorTextBlock.Visibility = Visibility.Visible;
+            return;
         }
-    }
 
+        // Hide error if previously shown
+        ErrorTextBlock.Visibility = Visibility.Collapsed;
+    }
 }

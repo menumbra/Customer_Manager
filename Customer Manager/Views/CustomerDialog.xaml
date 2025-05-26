@@ -50,8 +50,14 @@
                 <TranslateTransform Y="20" />
             </StackPanel.RenderTransform>
 
-            <TextBox x:Name="NameTextBox" Header="Customer Name" />
+            <TextBox x:Name="NameTextBox" Header="Customer Name" />            
             <TextBox x:Name="EmailTextBox" Header="Email Address" />
+            <TextBlock x:Name="ErrorTextBlock"
+                Foreground="Red"
+                FontSize="12"
+                Margin="0,8,0,0"
+                Visibility="Collapsed"
+                Text="Both Name and Email are required." />
             <ToggleSwitch x:Name="SmeSwitch" Header="SME (IG)" />
             <ToggleSwitch x:Name="SvSwitch" Header="SV (HC)" />
         </StackPanel>

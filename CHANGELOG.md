@@ -106,3 +106,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [2025-05-21]
 - First stable version of the Customer Manager app
+- Fix: Prevent empty Name/Email in Add Customer dialog
