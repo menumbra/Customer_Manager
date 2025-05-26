@@ -90,6 +90,14 @@
                    FontWeight="SemiLight"
                    Opacity="0.85"
                    Foreground="{ThemeResource TextFillColorSecondary}" />
+
+                <!-- 👤 Logout -->
+                <controls:NavigationViewItem Tag="logout">
+                    <controls:NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE8AC;" FontFamily="Segoe MDL2 Assets" />
+                    </controls:NavigationViewItem.Icon>
+                    <TextBlock Text="Log out" />
+                </controls:NavigationViewItem>
             </StackPanel>
 
             <!-- 🔹 Add spacing -->

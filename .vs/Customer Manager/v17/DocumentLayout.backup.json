@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "E:\\Repos\\Customer Manager\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\shell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\shell.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\shell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\shell.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|e:\\repos\\customer manager\\customer manager\\views\\customerdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{92A34B06-A646-467B-B729-37D9DDA06A8B}|Customer Manager\\Customer Manager.csproj|solutionrelative:customer manager\\views\\customerdialog.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -18,24 +26,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Shell.xaml.cs",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml.cs",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\Shell.xaml.cs",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml.cs",
+              "RelativeToolTip": "Customer Manager\\Views\\Shell.xaml.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAA4wFwAAAB0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T16:45:17.312Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Shell.xaml",
+              "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
+              "RelativeDocumentMoniker": "Customer Manager\\Views\\Shell.xaml",
+              "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\Shell.xaml",
+              "RelativeToolTip": "Customer Manager\\Views\\Shell.xaml",
+              "ViewState": "AgIAAEcAAAAAAAAAAAAAAFgAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-26T16:43:47.136Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "CustomerDialog.xaml.cs",
               "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\CustomerDialog.xaml.cs",
               "RelativeDocumentMoniker": "Customer Manager\\Views\\CustomerDialog.xaml.cs",
               "ToolTip": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\CustomerDialog.xaml.cs",
               "RelativeToolTip": "Customer Manager\\Views\\CustomerDialog.xaml.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAvwDEAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-26T15:35:13.622Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "CustomerDialog.xaml",
               "DocumentMoniker": "E:\\Repos\\Customer Manager\\Customer Manager\\Views\\CustomerDialog.xaml",
               "RelativeDocumentMoniker": "Customer Manager\\Views\\CustomerDialog.xaml",
