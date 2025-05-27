@@ -74,6 +74,8 @@ public sealed partial class CustomerPage : Page
     {
         string query = SearchTextBox.Text.Trim().ToLower();
 
+        FilterToggle_Click(sender, e); // 👈 Now reuses toggle logic
+
         if (string.IsNullOrWhiteSpace(query))
         {
             CustomerListView.ItemsSource = _customers;
@@ -133,6 +135,24 @@ public sealed partial class CustomerPage : Page
     {
         LoadCustomers();
     }
+
+    private void FilterToggle_Click(object sender, RoutedEventArgs e)
+    {
+        string query = SearchTextBox.Text.Trim().ToLower();
+
+        var filtered = _customers.Where(c =>
+            (string.IsNullOrWhiteSpace(query) ||
+             (!string.IsNullOrWhiteSpace(c.Name) && c.Name.ToLower().Contains(query)) ||
+             (!string.IsNullOrWhiteSpace(c.Email) && c.Email.ToLower().Contains(query)))
+            &&
+            (!SmeToggle.IsChecked ?? false || c.SME == "IG")
+            &&
+            (!SvToggle.IsChecked ?? false || c.SV == "HC")
+        ).ToList();
+
+        CustomerListView.ItemsSource = filtered;
+    }
+
 
     private void OpenFolder_Click(object sender, RoutedEventArgs e)
     {

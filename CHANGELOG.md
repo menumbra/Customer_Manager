@@ -8,3 +8,4 @@ Fix: Prevent crash in UpdateCounters() when header TextBlocks are null
 Fix: XAML syntax error on CustomerPage.xaml line 83
 ## [UI3 - Layout Modernization]
 - ♻️ Restored functionality to open the edit dialog when double-clicking a customer row using ListView
+✅ Added SME = IG and SV = HC filter toggles with combined search logic (UI4)
