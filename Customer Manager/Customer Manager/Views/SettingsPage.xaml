@@ -8,19 +8,35 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Spacing="12" Padding="20">
-        <TextBlock Text="Choose Base Folder for Customer Data" FontSize="18" FontWeight="SemiBold"/>
+    <ScrollViewer>
+        <StackPanel Padding="24" Spacing="24">
 
-        <Button Content="Pick Folder"
-            Click="PickFolderButton_Click"
-            HorizontalAlignment="Left"
-            Width="140"/>
+            <!-- Page Title -->
+            <TextBlock Text="Settings"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       FontFamily="Segoe UI Variable"
+                       Foreground="{ThemeResource TextFillColorPrimary}" />
 
-        <TextBlock x:Name="SelectedFolderPathText"
-               Text="No folder selected."
-               FontSize="14"
-               TextWrapping="Wrap"
-               Margin="0,10,0,0"/>
-    </StackPanel>
+            <!-- Section Header -->
+            <TextBlock Text="Storage Location"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       FontFamily="Segoe UI Variable"
+                       Foreground="{ThemeResource TextFillColorSecondary}" />
 
+            <!-- Folder Picker -->
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Content="Pick Folder"
+                        Click="PickFolderButton_Click" />
+                <TextBlock x:Name="SelectedFolderPathText"
+                           VerticalAlignment="Center"
+                           Text="No folder selected."
+                           FontFamily="Segoe UI Variable"
+                           TextWrapping="Wrap"
+                           Foreground="{ThemeResource TextFillColorPrimary}" />
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
 </Page>
