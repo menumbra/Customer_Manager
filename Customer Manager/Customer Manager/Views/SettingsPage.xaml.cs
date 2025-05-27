@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml;
+﻿using Customer_Manager.Helpers;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -15,6 +16,8 @@ using Windows.Foundation.Collections;
 using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
+using Customer_Manager;
+
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -31,6 +34,25 @@ public sealed partial class SettingsPage : Page
         if (!string.IsNullOrEmpty(savedPath))
         {
             SelectedFolderPathText.Text = savedPath;
+        }
+    }
+
+    private void ThemeSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (ThemeSelector.SelectedItem is ComboBoxItem selectedItem &&
+            selectedItem.Tag is string themeTag)
+        {
+            AppSettings.SetThemePreference(themeTag);
+
+            if (App.AppWindowInstance?.Content is FrameworkElement root)
+            {
+                root.RequestedTheme = themeTag switch
+                {
+                    "Light" => ElementTheme.Light,
+                    "Dark" => ElementTheme.Dark,
+                    _ => ElementTheme.Default
+                };
+            }
         }
     }
 

@@ -37,6 +37,22 @@
                            Foreground="{ThemeResource TextFillColorPrimary}" />
             </StackPanel>
 
+          <!-- Theme Section -->
+          <TextBlock Text="App Theme"
+                     FontSize="16"
+                     FontWeight="SemiBold"
+                     FontFamily="Segoe UI Variable"
+                     Foreground="{ThemeResource TextFillColorSecondary}" />
+
+          <ComboBox x:Name="ThemeSelector"
+                    SelectionChanged="ThemeSelector_SelectionChanged"
+                    Width="200">
+            <ComboBoxItem Tag="Default" Content="Use system setting" />
+            <ComboBoxItem Tag="Light" Content="Light" />
+            <ComboBoxItem Tag="Dark" Content="Dark" />
+          </ComboBox>
+
+
         </StackPanel>
     </ScrollViewer>
 </Page>
