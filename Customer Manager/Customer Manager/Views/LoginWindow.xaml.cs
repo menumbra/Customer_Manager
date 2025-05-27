@@ -38,9 +38,12 @@ public sealed partial class LoginWindow : Window
         {
             var window = new Window();
             window.Content = new Shell(username);
-            window.Activate();
 
-            this.Close(); // ✅ closes the login window
+            // ✅ Set global reference BEFORE Activate
+            App.AppWindowInstance = window;
+
+            window.Activate();
+            this.Close(); // close login window
         }
         else
         {

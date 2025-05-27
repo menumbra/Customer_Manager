@@ -34,10 +34,11 @@ public sealed partial class SettingsPage : Page
         }
     }
 
-
-    private async void PickFolderButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private async void PickFolderButton_Click(object sender, RoutedEventArgs e)
     {
         var folderPicker = new FolderPicker();
+
+        // This works reliably if your Shell window is still App.AppWindowInstance
         var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.AppWindowInstance);
         WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hwnd);
 
@@ -46,15 +47,13 @@ public sealed partial class SettingsPage : Page
         var folder = await folderPicker.PickSingleFolderAsync();
         if (folder != null)
         {
-            string selectedPath = folder.Path;
-            SelectedFolderPathText.Text = selectedPath;
-
-            // ✅ Save to AppSettings
-            Helpers.AppSettings.SetBaseFolderPath(selectedPath);
+            SelectedFolderPathText.Text = folder.Path;
+            Helpers.AppSettings.SetBaseFolderPath(folder.Path);
         }
         else
         {
             SelectedFolderPathText.Text = "No folder selected.";
         }
     }
+
 }

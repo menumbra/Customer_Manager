@@ -5,7 +5,7 @@ namespace Customer_Manager
 {
     public partial class App : Application
     {
-        public static Window AppWindowInstance { get; private set; } = null!;
+        public static Window AppWindowInstance { get; set; } = null!;
 
         public App()
         {

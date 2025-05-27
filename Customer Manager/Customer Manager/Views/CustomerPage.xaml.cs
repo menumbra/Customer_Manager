@@ -121,6 +121,24 @@ public sealed partial class CustomerPage : Page
             var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
             repo.AddCustomer(customer);
 
+            // ✅ Handle missing folder path safely
+        try
+        {
+            PathHelper.GetCustomerFolder(_editor, customer.Name);
+        }
+        catch (InvalidOperationException ex)
+        {
+            var warning = new ContentDialog
+            {
+                Title = "Missing Folder Setting",
+                Content = ex.Message,
+                CloseButtonText = "OK",
+                XamlRoot = this.Content.XamlRoot
+            };
+
+            await warning.ShowAsync();
+        }
+
             PathHelper.GetCustomerFolder(_editor, customer.Name);
             LoadCustomers();
             UpdateCounters(); // Update counters after adding a new customer
@@ -203,12 +221,27 @@ public sealed partial class CustomerPage : Page
 
                 if (oldName != customer.Name)
                 {
-                    string oldPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
-                    string newPath = PathHelper.GetCustomerFolderPathOnly(_editor, customer.Name);
-
-                    if (Directory.Exists(oldPath) && !Directory.Exists(newPath))
+                    try
                     {
-                        Directory.Move(oldPath, newPath);
+                        string oldPath = PathHelper.GetCustomerFolderPathOnly(_editor, oldName);
+                        string newPath = PathHelper.GetCustomerFolderPathOnly(_editor, customer.Name);
+
+                        if (Directory.Exists(oldPath) && !Directory.Exists(newPath))
+                        {
+                            Directory.Move(oldPath, newPath);
+                        }
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        var warning = new ContentDialog
+                        {
+                            Title = "Folder Rename Error",
+                            Content = ex.Message,
+                            CloseButtonText = "OK",
+                            XamlRoot = this.Content.XamlRoot
+                        };
+
+                        await warning.ShowAsync();
                     }
                 }
 
