@@ -178,12 +178,18 @@ public sealed partial class CustomerPage : Page
 
     private async void CustomerListView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
     {
-        if ((sender as FrameworkElement)?.DataContext is Customer customer)
+        if (e.OriginalSource is FrameworkElement element &&
+            element.DataContext is Customer customer)
         {
-            var dialog = new CustomerDialog { XamlRoot = this.Content.XamlRoot };
+            var dialog = new CustomerDialog
+            {
+                XamlRoot = this.Content.XamlRoot
+            };
+
             dialog.SetInitialData(customer.Name, customer.Email, customer.SME, customer.SV);
 
             var result = await dialog.ShowAsync();
+
             if (result == ContentDialogResult.Primary)
             {
                 string oldName = customer.Name;
@@ -226,4 +232,5 @@ public sealed partial class CustomerPage : Page
             }
         }
     }
+
 }

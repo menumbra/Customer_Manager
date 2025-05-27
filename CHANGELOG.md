@@ -5,3 +5,6 @@ Step 4C: Finalize folder creation and renaming using AppSettings base path
 Step UI1: Fix XamlParseException by removing missing ButtonStyle
 Step UI2: Suppress CS8618 and CS8600 theme & window warnings
 Fix: Prevent crash in UpdateCounters() when header TextBlocks are null
+Fix: XAML syntax error on CustomerPage.xaml line 83
+## [UI3 - Layout Modernization]
+- ♻️ Restored functionality to open the edit dialog when double-clicking a customer row using ListView
