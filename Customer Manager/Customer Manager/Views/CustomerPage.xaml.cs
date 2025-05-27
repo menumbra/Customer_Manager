@@ -15,7 +15,6 @@ namespace Customer_Manager.Views;
 public sealed partial class CustomerPage : Page
 {
     private readonly string _editor;
-    private ObservableCollection<Customer> _customers = new();
 
     public int TotalCount { get; private set; }
     public int IgCount { get; private set; }
@@ -25,30 +24,21 @@ public sealed partial class CustomerPage : Page
     public TextBlock? HeaderIg { get; set; }
     public TextBlock? HeaderHc { get; set; }
 
+    public ObservableCollection<Customer> _customers = new();
 
-    public static string CurrentEditor { get; set; } = ""; // Set from Shell
+    public static string CurrentEditor { get; set; } = "";
+
     public CustomerPage()
     {
         this.InitializeComponent();
         _editor = CurrentEditor;
-        this.SizeChanged += CustomerPage_SizeChanged;
         LoadCustomers();
     }
-
-    private void CustomerPage_SizeChanged(object sender, SizeChangedEventArgs e)
-    {
-        double width = e.NewSize.Width;
-
-        // Hide email if window is narrower than 640px
-        if (EmailColumn != null)
-            EmailColumn.Visibility = width < 640 ? Visibility.Collapsed : Visibility.Visible;
-    }
-
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         base.OnNavigatedTo(e);
-        UpdateCounters(); // ✅ forces header update when page is shown
+        UpdateCounters();
     }
 
     public void UpdateCounters()
@@ -57,15 +47,16 @@ public sealed partial class CustomerPage : Page
         IgCount = _customers.Count(c => c.SME == "IG");
         HcCount = _customers.Count(c => c.SV == "HC");
 
-        // ✅ Update NavigationView header if bound
         if (HeaderTotal != null)
             HeaderTotal.Text = $"Total: {TotalCount}";
+
         if (HeaderIg != null)
             HeaderIg.Text = $"IG: {IgCount}";
+
         if (HeaderHc != null)
             HeaderHc.Text = $"HC: {HcCount}";
-
     }
+
 
     private void LoadCustomers()
     {
@@ -74,7 +65,7 @@ public sealed partial class CustomerPage : Page
         var customers = repo.GetCustomers();
 
         _customers = new ObservableCollection<Customer>(customers);
-        CustomerDataGrid.ItemsSource = _customers;
+        CustomerListView.ItemsSource = _customers;
 
         UpdateCounters();
     }
@@ -85,7 +76,7 @@ public sealed partial class CustomerPage : Page
 
         if (string.IsNullOrWhiteSpace(query))
         {
-            CustomerDataGrid.ItemsSource = _customers;
+            CustomerListView.ItemsSource = _customers;
             return;
         }
 
@@ -93,17 +84,14 @@ public sealed partial class CustomerPage : Page
             (!string.IsNullOrWhiteSpace(c.Name) && c.Name.ToLower().Contains(query)) ||
             (!string.IsNullOrWhiteSpace(c.Email) && c.Email.ToLower().Contains(query))).ToList();
 
-        CustomerDataGrid.ItemsSource = filtered;
+        CustomerListView.ItemsSource = filtered;
     }
 
     private async void AddCustomer_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new CustomerDialog
-        {
-            XamlRoot = this.Content.XamlRoot
-        };
-
+        var dialog = new CustomerDialog { XamlRoot = this.Content.XamlRoot };
         var result = await dialog.ShowAsync();
+
         if (result == ContentDialogResult.Primary)
         {
             var customer = new Customer
@@ -121,34 +109,29 @@ public sealed partial class CustomerPage : Page
             var repo = new CustomerRepository(PathHelper.GetUserDbPath(_editor));
             repo.AddCustomer(customer);
 
-            // ✅ Handle missing folder path safely
-        try
-        {
-            PathHelper.GetCustomerFolder(_editor, customer.Name);
-        }
-        catch (InvalidOperationException ex)
-        {
-            var warning = new ContentDialog
+            try
             {
-                Title = "Missing Folder Setting",
-                Content = ex.Message,
-                CloseButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
-            };
+                PathHelper.GetCustomerFolder(_editor, customer.Name);
+            }
+            catch (InvalidOperationException ex)
+            {
+                var warning = new ContentDialog
+                {
+                    Title = "Missing Folder Setting",
+                    Content = ex.Message,
+                    CloseButtonText = "OK",
+                    XamlRoot = this.Content.XamlRoot
+                };
+                await warning.ShowAsync();
+            }
 
-            await warning.ShowAsync();
-        }
-
-            PathHelper.GetCustomerFolder(_editor, customer.Name);
             LoadCustomers();
-            UpdateCounters(); // Update counters after adding a new customer
         }
     }
 
     private void RefreshButton_Click(object sender, RoutedEventArgs e)
     {
         LoadCustomers();
-        UpdateCounters(); // Update counters after refresh
     }
 
     private void OpenFolder_Click(object sender, RoutedEventArgs e)
@@ -189,24 +172,18 @@ public sealed partial class CustomerPage : Page
                 }
 
                 LoadCustomers();
-                UpdateCounters(); // Update counters after deletion
             }
         }
     }
 
-    private async void CustomerDataGrid_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+    private async void CustomerListView_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
     {
-        if (CustomerDataGrid.SelectedItem is Customer customer)
+        if ((sender as FrameworkElement)?.DataContext is Customer customer)
         {
-            var dialog = new CustomerDialog
-            {
-                XamlRoot = this.Content.XamlRoot
-            };
-
+            var dialog = new CustomerDialog { XamlRoot = this.Content.XamlRoot };
             dialog.SetInitialData(customer.Name, customer.Email, customer.SME, customer.SV);
 
             var result = await dialog.ShowAsync();
-
             if (result == ContentDialogResult.Primary)
             {
                 string oldName = customer.Name;
