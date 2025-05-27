@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentDialog
+    x:Class="Customer_Manager.Views.CustomerDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Customer_Manager.Views"
+    Title="Customer Details"
+    PrimaryButtonText="Save"
+    CloseButtonText="Cancel"
+    PrimaryButtonClick="CustomerDialog_PrimaryButtonClick"
+    DefaultButton="Primary">
+
+    <ContentDialog.Transitions>
+        <TransitionCollection>
+            <EntranceThemeTransition />
+        </TransitionCollection>
+    </ContentDialog.Transitions>
+
+    <ContentDialog.Resources>
+        <Storyboard x:Name="EntranceStoryboard">
+            <DoubleAnimation
+                Storyboard.TargetName="AnimatedPanel"
+                Storyboard.TargetProperty="Opacity"
+                From="0"
+                To="1"
+                Duration="0:0:0.3" />
+
+            <DoubleAnimation
+                Storyboard.TargetName="AnimatedPanel"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                From="20"
+                To="0"
+                Duration="0:0:0.3"
+                EasingFunction="{StaticResource DefaultEase}" />
+        </Storyboard>
+
+        <QuadraticEase x:Key="DefaultEase" EasingMode="EaseOut" />
+    </ContentDialog.Resources>
+
+    <ScrollViewer MaxHeight="500" 
+                  VerticalScrollBarVisibility="Auto"
+                  Padding="0,0,12,0">
+        
+
+        <StackPanel x:Name="AnimatedPanel" 
+                    Spacing="12" 
+                    Opacity="0"
+                    Padding="24,16,36,16">
+            <StackPanel.RenderTransform>
+                <TranslateTransform Y="20" />
+            </StackPanel.RenderTransform>
+
+            <TextBox x:Name="NameTextBox" Header="Customer Name" />            
+            <TextBox x:Name="EmailTextBox" Header="Email Address" />
+            <TextBlock x:Name="ErrorTextBlock"
+                Foreground="Red"
+                FontSize="12"
+                Margin="0,8,0,0"
+                Visibility="Collapsed"
+                Text="Both Name and Email are required." />
+            <ToggleSwitch x:Name="SmeSwitch" Header="SME (IG)" />
+            <ToggleSwitch x:Name="SvSwitch" Header="SV (HC)" />
+        </StackPanel>
+    </ScrollViewer>    
+</ContentDialog>
+

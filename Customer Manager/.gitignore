@@ -1,0 +1,29 @@
+# Build results
+bin/
+obj/
+GeneratedFiles/
+
+# Visual Studio settings
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Runtime files
+*.db
+*.db-journal
+
+# Logs
+*.log
+
+# System files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# NAS test folders (if needed)
+TestFolders/
+
+# Others
+*.cache
+*.pdb
