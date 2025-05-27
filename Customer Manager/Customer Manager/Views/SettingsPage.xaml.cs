@@ -1,4 +1,4 @@
-using Microsoft.UI.Xaml;
+﻿using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
@@ -25,21 +25,32 @@ public sealed partial class SettingsPage : Page
     public SettingsPage()
     {
         InitializeComponent();
+
+        // ✅ Load and show the saved folder path
+        var savedPath = Helpers.AppSettings.GetBaseFolderPath();
+        if (!string.IsNullOrEmpty(savedPath))
+        {
+            SelectedFolderPathText.Text = savedPath;
+        }
     }
+
 
     private async void PickFolderButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var folderPicker = new FolderPicker();
-
-        var hwnd = WindowNative.GetWindowHandle(App.AppWindowInstance);
-        InitializeWithWindow.Initialize(folderPicker, hwnd);
+        var hwnd = WinRT.Interop.WindowNative.GetWindowHandle(App.AppWindowInstance);
+        WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hwnd);
 
         folderPicker.FileTypeFilter.Add("*");
 
         var folder = await folderPicker.PickSingleFolderAsync();
         if (folder != null)
         {
-            SelectedFolderPathText.Text = folder.Path;
+            string selectedPath = folder.Path;
+            SelectedFolderPathText.Text = selectedPath;
+
+            // ✅ Save to AppSettings
+            Helpers.AppSettings.SetBaseFolderPath(selectedPath);
         }
         else
         {
