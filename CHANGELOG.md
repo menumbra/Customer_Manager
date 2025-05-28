@@ -10,3 +10,4 @@ Fix: XAML syntax error on CustomerPage.xaml line 83
 - ♻️ Restored functionality to open the edit dialog when double-clicking a customer row using ListView
 ✅ Added SME = IG and SV = HC filter toggles with combined search logic (UI4)
 🎨 UI6: Polished row layout — right-aligned action buttons, centered SME/SV
+Revert back to DataGrid
