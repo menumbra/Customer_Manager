@@ -49,9 +49,9 @@
                     <controls:DataGridTextColumn Header="Email" x:Name="EmailColumn" Binding="{Binding Email}" Width="2*" />
                     <controls:DataGridTextColumn Header="SME" Binding="{Binding SME}" Width="Auto" />
                     <controls:DataGridTextColumn Header="SV" Binding="{Binding SV}" Width="Auto" />
-                    <controls:DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="Auto" />
+                    <!--<controls:DataGridTextColumn Header="Month" Binding="{Binding Month}" Width="Auto" />
                     <controls:DataGridTextColumn Header="Date" Binding="{Binding Date}" Width="Auto" />
-                    <controls:DataGridTextColumn Header="Editor" Binding="{Binding Editor}" Width="Auto" />
+                    <controls:DataGridTextColumn Header="Editor" Binding="{Binding Editor}" Width="Auto" />-->
 
                     <controls:DataGridTemplateColumn Header="Actions" Width="Auto">
                         <controls:DataGridTemplateColumn.CellTemplate>
