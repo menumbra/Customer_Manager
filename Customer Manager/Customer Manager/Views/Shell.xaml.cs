@@ -83,10 +83,8 @@ public sealed partial class Shell : Page
 
         // Make NavView the draggable region
         var window = App.AppWindowInstance;
-        if (NavView is not null)
-        {
-            App.AppWindowInstance?.SetTitleBar(NavView);
-        }
+        window.SetTitleBar(NavView); // ✅ CORRECT
+
     }
 
     private void Shell_Loaded(object sender, RoutedEventArgs e)
@@ -158,7 +156,7 @@ public sealed partial class Shell : Page
             {
                 var login = new LoginWindow();
                 login.Activate();
-                App.AppWindowInstance?.Close();
+                App.AppWindowInstance.Close();
             }
         }
     }

@@ -16,8 +16,4 @@ public class Customer
     public required string Email { get; set; }       // Customer email
     public string SME { get; set; } = "";
     public string SV { get; set; } = "";
-
-    public string SmeSv => $"{SME} / {SV}";
-    public string MonthDate => $"{Month} {Date}";
-
 }

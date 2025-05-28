@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Application  
-    x:Class="Customer_Manager.App"
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    x:Class="Customer_Manager.App"  
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"  
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"  
     xmlns:local="using:Customer_Manager"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls">
 
@@ -12,14 +12,6 @@
                 <!-- This is required for NavigationView, DataGrid, etc. -->
                 <controls:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>
-
-            <Style x:Key="ButtonRevealStyle" TargetType="Button" BasedOn="{StaticResource DefaultButtonStyle}">
-                <Setter Property="CornerRadius" Value="8"/>
-                <Setter Property="Padding" Value="4"/>
-                <Setter Property="MinWidth" Value="32"/>
-                <Setter Property="MinHeight" Value="32"/>
-            </Style>
-
 
             <!-- ✅ Animated Icon Button Style without risky theme resources -->
             <Style x:Key="AnimatedIconButtonStyle" TargetType="Button">
